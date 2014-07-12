@@ -10,37 +10,32 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.helpers.FontHelper;
 
-
-
-
 public class Menu extends BasicGameState
 {
-	
+
 	TrueTypeFont checkbook, cosmicfade, plasmati, twobit;
-	
 
 	public Menu(int state)
 	{
-		
+
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException
 	{
-		
+
 		checkbook = FontHelper.setTTF("checkbook.ttf", 18);
 		plasmati = FontHelper.setTTF("plasmati.ttf", 48);
-		cosmicfade = FontHelper.setTTF("cosmicfade.ttf",  100);
-		
-		
+		cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
+
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException
 	{
-		
+
 		gc.setDefaultFont(checkbook);
 		g.setFont(cosmicfade);
 		g.setColor(Color.yellow);
@@ -49,24 +44,22 @@ public class Menu extends BasicGameState
 		g.drawString("Play", 410, 170);
 		g.drawString("Directions", 320, 280);
 		g.drawString("Scores", 375, 380);
-		g.drawString("Credits",362, 490);
-		
+		g.drawString("Credits", 362, 490);
+
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException
 	{
-		
-		
+
 	}
 
 	@Override
 	public int getID()
 	{
-		
+
 		return 0;
 	}
 
-	
 }

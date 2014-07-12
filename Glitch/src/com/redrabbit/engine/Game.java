@@ -1,4 +1,5 @@
 package com.redrabbit.engine;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -13,18 +14,19 @@ import com.redrabbit.states.Play;
  * @authors rabbitfighter81, redragonx
  * 
  */
-public class Game extends StateBasedGame{
+public class Game extends StateBasedGame
+{
 
-public static final String gamename = "glitCh";
+	public static final String gamename = "glitCh";
 
-// States
-public static final int menu = 0;
-public static final int play = 1;
-public static final int pause = 2;
-
+	// States
+	public static final int menu = 0;
+	public static final int play = 1;
+	public static final int pause = 2;
 
 	/**
-	 * @param gamename The name of the game
+	 * @param gamename
+	 *            The name of the game
 	 */
 	public Game(String gamename)
 	{
@@ -34,24 +36,20 @@ public static final int pause = 2;
 		this.addState(new Pause(pause));
 	}
 
-
-
-
-
 	public void initStatesList(GameContainer gc) throws SlickException
 	{
-		this.getState(menu).init(gc, this); 
+		this.getState(menu).init(gc, this);
 		this.getState(play).init(gc, this);
 		this.getState(pause).init(gc, this);
 		this.enterState(menu);
-		
-		
+
 	}
-	
-	public static void main(String[] args) {
-	
+
+	public static void main(String[] args)
+	{
+
 		AppGameContainer appgc;
-		
+
 		try
 		{
 			appgc = new AppGameContainer(new Game(gamename));
@@ -64,12 +62,7 @@ public static final int pause = 2;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
-
-	
-
 
 }

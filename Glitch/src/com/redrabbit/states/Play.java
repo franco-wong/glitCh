@@ -1,4 +1,5 @@
 package com.redrabbit.states;
+
 import java.awt.Color;
 
 import org.newdawn.slick.GameContainer;
@@ -13,21 +14,22 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.objects.Rect;
 
-public class Play extends BasicGameState {
+public class Play extends BasicGameState
+{
 
-
-	private String dumbString = "Stephen... Are you ready to make a game?";
 	Rect rect;
 
 	float velocityX, velocityY;
 
-	public Play(int state) {
+	public Play(int state)
+	{
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
-			throws SlickException {
+			throws SlickException
+	{
 
 		rect = new Rect();
 
@@ -35,29 +37,28 @@ public class Play extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {
+			throws SlickException
+	{
 
 		// g.drawRect(x, y, 50, 100);
 		g.drawRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-		
-		
 
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {
+			throws SlickException
+	{
 
 		rect.rectGo(delta);
 
 	}
 
 	@Override
-	public int getID() {
+	public int getID()
+	{
 		// TODO Auto-generated method stub
 		return 1;
 	}
-
-	
 
 }
