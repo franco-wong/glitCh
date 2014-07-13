@@ -2,6 +2,7 @@ package com.redrabbit.helpers;
 
 /**
  * A Wrapper class for moveable objectts
+ * 
  * @author rabbitfighter
  *
  */

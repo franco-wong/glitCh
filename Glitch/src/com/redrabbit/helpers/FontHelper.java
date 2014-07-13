@@ -60,7 +60,7 @@ public class FontHelper
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			
+
 			// If there was a problem, log it.
 			if (LoggerConfig.ON)
 			{

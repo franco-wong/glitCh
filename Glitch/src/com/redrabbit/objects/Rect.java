@@ -15,7 +15,6 @@ public class Rect
 		this.setHeight(100);
 		this.setX(50);
 		this.setY(50);
-		// Set collided
 		this.setCollidedX(false);
 		this.setCollidedY(false);
 

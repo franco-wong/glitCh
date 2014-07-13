@@ -9,8 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.Log;
-
 import Constants.Colors;
 
 import com.redrabbit.helpers.FontHelper;
@@ -46,12 +44,10 @@ public class Menu extends BasicGameState
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException
 	{
-
 		menulayer = new Image(imagePath);
 		checkbook = FontHelper.setTTF("checkbook.ttf", 18);
 		plasmati = FontHelper.setTTF("plasmati.ttf", 48);
 		cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
-
 	}
 
 	@Override

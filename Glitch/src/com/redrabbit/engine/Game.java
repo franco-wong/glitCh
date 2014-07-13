@@ -11,7 +11,7 @@ import com.redrabbit.states.Pause;
 import com.redrabbit.states.Play;
 
 /**
- * @authors rabbitfighter81, redragonx
+ * @authors rabbitfighter, redragonx
  * 
  */
 public class Game extends StateBasedGame

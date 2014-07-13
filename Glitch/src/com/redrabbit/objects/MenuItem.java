@@ -5,7 +5,7 @@ import com.redrabbit.helpers.Moveable;
 /**
  * A class that hold information about menu items.
  * 
- * @author rabbitfighter
+ * @author rabbitfighter & redragonX
  *
  */
 public class MenuItem extends Moveable

@@ -6,19 +6,24 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The pause menu for our game.
+ * 
+ * @author rabbitfighter
+ *
+ */
 public class Pause extends BasicGameState
 {
 
 	public Pause(int pause)
 	{
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException
 	{
-		// TODO Auto-generated method stub
 
 	}
 
@@ -26,7 +31,6 @@ public class Pause extends BasicGameState
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException
 	{
-		// TODO Auto-generated method stub
 
 	}
 
@@ -34,14 +38,13 @@ public class Pause extends BasicGameState
 	public void update(GameContainer gc, StateBasedGame sbg1, int delta)
 			throws SlickException
 	{
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public int getID()
 	{
-		// TODO Auto-generated method stub
+
 		return 2;
 	}
 
