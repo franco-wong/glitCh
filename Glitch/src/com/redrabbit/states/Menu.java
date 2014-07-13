@@ -12,8 +12,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Constants.Colors;
-
+import com.redrabbit.constants.Colors;
 import com.redrabbit.helpers.FontHelper;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.MenuItem;

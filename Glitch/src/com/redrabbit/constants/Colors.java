@@ -1,4 +1,4 @@
-package Constants;
+package com.redrabbit.constants;
 
 import org.newdawn.slick.Color;
 
