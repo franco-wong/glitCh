@@ -2,28 +2,41 @@ package com.redrabbit.helpers;
 
 import java.awt.Font;
 import java.io.InputStream;
+
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
+import com.redrabbit.logging.LoggerConfig;
+
 /**
+ * This is a helper class for loading Truee Type Fonts safely and soundly using
+ * an iput stream that grabs the font and first creates a plain AWT font, which
+ * then gets passed into a TTF for return and use in our game. This class also
+ * has logging capabilities built in for debugging purposes.
+ * 
  * @author rabbitfighter & redragonX
  *
  */
 public class FontHelper
 {
 
-	// Instance variablees
+	// TTF
 	private static TrueTypeFont ttf;
+	// Path to the fonts.
 	private final static String path = "res/fonts/";
+	// For logging.
 	private static final String TAG = "FontHelper";
 
 	/**
-	 * Returns a TTF based on the name and the size given.
+	 * Returns a True Type Font (the recommmended font standard for use in
+	 * Slick2D), based on the name and the size given.
 	 * 
 	 * @param font
+	 *            - A string of the desired font name
 	 * @param size
-	 * @return
+	 *            - the size in pixels of the desired font
+	 * @return ttf - the True Type font that was created for use in our game.
 	 */
 	public static TrueTypeFont setTTF(String font, float size)
 	{
@@ -47,7 +60,13 @@ public class FontHelper
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			Log.error(TAG + " - Could not load font");
+			
+			// If there was a problem, log it.
+			if (LoggerConfig.ON)
+			{
+				Log.info(TAG + ": Could not load font");
+			}
+
 		}
 
 		// Return the TTF
