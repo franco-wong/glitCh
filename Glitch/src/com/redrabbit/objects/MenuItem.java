@@ -63,7 +63,7 @@ public class MenuItem extends Moveable
 		 * Iterator appends characters to string builder starting at the end of
 		 * the string and moving backwards until completion
 		 */
-		for (int i = name.length(); i > 0; i--)
+		for (int i = name.length()-1; i >= 0; i--)
 		{
 			// Add character to String Builder
 			sb.append(name.toCharArray()[i]);
@@ -103,6 +103,13 @@ public class MenuItem extends Moveable
 	public void setWidth(float width)
 	{
 		this.width = width;
+	}
+
+	public boolean isHovering(float mouseX, float mouseY)
+	{
+		return ((mouseX > this.getX() && mouseX < this.getX() + this.width) && (mouseY > this
+				.getY() && mouseY < this.getY() + this.getHeight()));
+
 	}
 
 }// EOF
