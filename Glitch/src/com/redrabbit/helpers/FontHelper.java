@@ -18,59 +18,53 @@ import com.redrabbit.logging.LoggerConfig;
  * @author rabbitfighter & redragonX
  *
  */
-public class FontHelper
-{
+public class FontHelper {
 
-	// TTF
-	private static TrueTypeFont ttf;
-	// Path to the fonts.
-	private final static String path = "res/fonts/";
-	// For logging.
-	private static final String TAG = "FontHelper";
+    // TTF
+    private static TrueTypeFont ttf;
+    // Path to the fonts.
+    private final static String path = "res/fonts/";
+    // For logging.
+    private static final String TAG = "FontHelper";
 
-	/**
-	 * Returns a True Type Font (the recommmended font standard for use in
-	 * Slick2D), based on the name and the size given.
-	 * 
-	 * @param font
-	 *            - A string of the desired font name
-	 * @param size
-	 *            - the size in pixels of the desired font
-	 * @return ttf - the True Type font that was created for use in our game.
-	 */
-	public static TrueTypeFont setTTF(String font, float size)
-	{
+    /**
+     * Returns a True Type Font (the recommmended font standard for use in
+     * Slick2D), based on the name and the size given.
+     * 
+     * @param font
+     *            - A string of the desired font name
+     * @param size
+     *            - the size in pixels of the desired font
+     * @return ttf - the True Type font that was created for use in our game.
+     */
+    public static TrueTypeFont setTTF(String font, float size) {
 
-		try
-		{
-			// Open an input stream to get resources
-			InputStream inputStream = ResourceLoader.getResourceAsStream(path
-					+ font);
+	try {
+	    // Open an input stream to get resources
+	    InputStream inputStream = ResourceLoader.getResourceAsStream(path
+		    + font);
 
-			// Create an awt Font object from the input stream as a TrueTypeFont
-			Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+	    // Create an awt Font object from the input stream as a TrueTypeFont
+	    Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 
-			// Set font size
-			awtFont = awtFont.deriveFont(size);
+	    // Set font size
+	    awtFont = awtFont.deriveFont(size);
 
-			// Create a new TrueTypeFont
-			ttf = new TrueTypeFont(awtFont, false);
+	    // Create a new TrueTypeFont
+	    ttf = new TrueTypeFont(awtFont, false);
 
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
+	} catch (Exception e) {
+	    e.printStackTrace();
 
-			// If there was a problem, log it.
-			if (LoggerConfig.ON)
-			{
-				Log.info(TAG + ": Could not load font");
-			}
+	    // If there was a problem, log it.
+	    if (LoggerConfig.ON) {
+		Log.info(TAG + ": Could not load font");
+	    }
 
-		}
-
-		// Return the TTF
-		return ttf;
 	}
+
+	// Return the TTF
+	return ttf;
+    }
 
 }// EOF

@@ -6,7 +6,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/rabbitfighter/Java/Slick/lwjgl.jar"/>
-	<classpathentry kind="lib" path="/home/rabbitfighter/Java/Slick/slick.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/jinput.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/jnlp.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/lwjgl_util_applet.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/lwjgl.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/slick-examples.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

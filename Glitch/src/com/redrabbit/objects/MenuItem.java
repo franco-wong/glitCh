@@ -1,5 +1,10 @@
 package com.redrabbit.objects;
 
+import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Point;
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
+
 import com.redrabbit.helpers.Moveable;
 
 /**
@@ -8,108 +13,121 @@ import com.redrabbit.helpers.Moveable;
  * @author rabbitfighter & redragonX
  *
  */
-public class MenuItem extends Moveable
-{
+public class MenuItem extends Moveable {
 
-	private String name;
-	private float width, height;
+    private String name;
+    private float width, height;
+    private Rectangle bounds;
+    private boolean selected;
+    private int selectedItemID;
 
-	/**
-	 * Constructor for a menu item with x and y position passed in
-	 * 
-	 * @param name
-	 * @param width
-	 * @param height
+    /**
+     * Constructor for a Menu Item
+     * 
+     * @param x
+     *            - the x coord
+     * @param y
+     *            - the y coord
+     * @param angle
+     *            - the angle of the object
+     * @param speed
+     *            - the speed of the the object
+     */
+    public MenuItem(String name, float x, float y, float width, float heigth,
+	    float angle, float speed, boolean selected) {
+	/*
+	 * Super class variables. Will set vector in super class's constructor,
+	 * as well as set the width and height.
 	 */
-	public MenuItem(String name, float x, float y)
-	{
-		this.setName(name);
-		super.setX(x);
-		super.setY(y);
-	}
-
-	/**
-	 * Constructor with width and height variables passed in
-	 * 
-	 * @param name
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
+	super(x, y, angle, speed);
+	this.setName(name);
+	this.setWidth(width);
+	this.setHeight(heigth);
+	/*
+	 * This will create a Rectangle that will represent the bounds, for
+	 * collision detection
 	 */
-	public MenuItem(String name, float x, float y, float width, float height)
-	{
-		this.setName(name);
-		this.setWidth(width);
-		this.setHeight(height);
-		super.setX(x);
-		super.setY(y);
+	this.setBounds(new Rectangle(x, y, width, height));
+	this.setSelected(selected);
+    }
 
-	}
+    /**
+     * A simple method to reverse the string of a menu item
+     * 
+     * @param name
+     *            - the name passed in
+     * @return the reversed string
+     */
+    public static String reverseString(String name) {
 
-	/**
-	 * A simple method to reverse the string of a menu item
-	 * 
-	 * @param name
-	 *            - the name passed in
-	 * @return the reversed string
+	// Create a new string builder object
+	StringBuilder sb = new StringBuilder();
+	/*
+	 * Iterator appends characters to string builder starting at the end of
+	 * the string and moving backwards until completion
 	 */
-	public static String reverseString(String name)
-	{
-
-		// Create a new string builder object
-		StringBuilder sb = new StringBuilder();
-		/*
-		 * Iterator appends characters to string builder starting at the end of
-		 * the string and moving backwards until completion
-		 */
-		for (int i = name.length()-1; i >= 0; i--)
-		{
-			// Add character to String Builder
-			sb.append(name.toCharArray()[i]);
-		}
-
-		// Return the reversed string
-		return sb.toString();
+	for (int i = name.length() - 1; i >= 0; i--) {
+	    // Add character to String Builder
+	    sb.append(name.toCharArray()[i]);
 	}
 
-	/***** Getters and Setters *****/
+	// Return the reversed string
+	return sb.toString();
+    }
 
-	public String getName()
-	{
-		return name;
-	}
+    /***** Getters and Setters *****/
 
-	public void setName(String name)
-	{
-		this.name = name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public float getHeight()
-	{
-		return height;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public void setHeight(float height)
-	{
-		this.height = height;
-	}
+    public float getHeight() {
+	return this.height;
+    }
 
-	public float getWidth()
-	{
-		return width;
-	}
+    public void setHeight(float height) {
+	this.height = height;
+    }
 
-	public void setWidth(float width)
-	{
-		this.width = width;
-	}
+    public float getWidth() {
+	return this.width;
+    }
 
-	public boolean isHovering(float mouseX, float mouseY)
-	{
-		return ((mouseX > this.getX() && mouseX < this.getX() + this.width) && (mouseY > this
-				.getY() && mouseY < this.getY() + this.getHeight()));
+    public void setWidth(float width) {
+	this.width = width;
+    }
 
-	}
+    public boolean isHovering(float mouseX, float mouseY) {
+	return new Circle(mouseX, mouseY, 1, 1).intersects(this.getBounds());
+
+    }
+
+    public Rectangle getBounds() {
+	return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+	this.bounds = bounds;
+    }
+
+    public boolean isSelected() {
+	return this.selected;
+    }
+
+    public void setSelected(boolean selected) {
+	this.selected = selected;
+    }
+
+    public int getSelectedItemID() {
+	return this.selectedItemID;
+    }
+
+    public void setSelectedItemID(int selectedItemID) {
+	this.selectedItemID = selectedItemID;
+    }
 
 }// EOF
