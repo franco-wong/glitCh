@@ -64,12 +64,12 @@ public class MainMenuState extends BasicGameState {
 	menuItems = new MenuItem[5];
 
 	// Add menu items: (title, x, y, width, height, angle, speed, selected)
-	menuItems[0] = new MenuItem(PLAY, 410f, 160f, 110f, 100f, 0f, 0f, false);
-	menuItems[1] = new MenuItem(DIRECTIONS, 330f, 270f, 290f, 100f, 0f, 0f,
+	menuItems[0] = new MenuItem(PLAY, 472f, 160f, 110f, 100f, 0f, 0f, false);
+	menuItems[1] = new MenuItem(DIRECTIONS, 392f, 270f, 290f, 100f, 0f, 0f,
 		false);
-	menuItems[2] = new MenuItem(SCORES, 375, 380, 210, 100, 0f, 0f, false);
-	menuItems[3] = new MenuItem(CREDITS, 364, 490, 220, 100, 0f, 0f, false);
-	menuItems[4] = new MenuItem(QUIT, 410, 600, 110, 100, 0f, 0f, false);
+	menuItems[2] = new MenuItem(SCORES, 437, 380, 210, 100, 0f, 0f, false);
+	menuItems[3] = new MenuItem(CREDITS, 428, 490, 220, 100, 0f, 0f, false);
+	menuItems[4] = new MenuItem(QUIT, 472, 600, 110, 100, 0f, 0f, false);
 
 	// Create the menu object with (title, the menu items array, and the
 	// image).
@@ -100,7 +100,7 @@ public class MainMenuState extends BasicGameState {
 	// Title
 	g.setFont(cosmicfade);
 	g.setColor(CustomColors.yellow);
-	g.drawString(TITLE, 380, 30);
+	g.drawString(TITLE, 442, 30);
 
 	// Menu Items
 	g.setColor(Color.white);

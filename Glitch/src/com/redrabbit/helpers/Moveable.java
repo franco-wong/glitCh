@@ -33,8 +33,8 @@ public class Moveable {
 	float angleRadians = (float) Math.toRadians(this.getAngle());
 	
 	// Return a new Vectir based on trajectory
-	return new Vector2f((float) (this.getVelocity() * Math.cos(angleRadians)),
-		(float) (this.getVelocity() * Math.cos(angleRadians)));
+	return new Vector2f((float) (this.getVector().getX() + this.getVelocity() * Math.cos(angleRadians)),
+		(float) (this.getVector().getY() + this.getVelocity() * Math.sin(angleRadians)));
 
     }
     

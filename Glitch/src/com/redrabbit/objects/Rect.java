@@ -1,11 +1,11 @@
 package com.redrabbit.objects;
 
-
-
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
 import com.redrabbit.helpers.Moveable;
+import com.redrabbit.logging.LoggerConfig;
 
 /**
  * To be deleted soon. WIP
@@ -15,14 +15,16 @@ import com.redrabbit.helpers.Moveable;
  */
 public class Rect extends Moveable {
 
+    private static final String TAG = "Rect";
+
     private float width;
     private float height;
     private float speed;
     private Rectangle bounds;
 
-    public final static float SPEEDCHANGEAMOUNT = .010f;
-    public final static float ANGLECHANGEAMOUNT = 2f;
-    public final static float MAX_SPEED = 2f;
+    public final static float SPEEDCHANGEAMOUNT = .016f;
+    public final static float ANGLECHANGEAMOUNT = 4f;
+    public final static float MAX_SPEED = 4f;
 
     /**
      * Constructor for a "Rectangle" of sorts for testing purposes.
@@ -43,7 +45,7 @@ public class Rect extends Moveable {
 
     public Rect(Vector2f vector, float width, float height, float angle,
 	    float velocity) {
-	
+
 	super(vector, angle, velocity);
 	this.setWidth(width);
 	this.setHeight(height);
@@ -60,22 +62,33 @@ public class Rect extends Moveable {
 	    this.setVelocity(MAX_SPEED);
 	if (this.getVelocity() <= -MAX_SPEED)
 	    this.setVelocity(-MAX_SPEED);
-	System.out.println("Velocity: " + this.getVelocity());
+
+	// Logging
+	if (LoggerConfig.ON) {
+	    Log.debug(" " + TAG + "Velocity: " + this.getVelocity());
+	}
+
     }
 
     // turn the player by a given angle amount
     public void turn(int amount) {
 
+	// make sure angles are positive.
+	if (this.getAngle() >= 360) {
+	    this.setAngle(this.getAngle() % 360);
+	} else if (this.getAngle() <= 0) {
+	    this.setAngle(this.getAngle() + 360);
+	}
+
+	// Set the angle.
 	this.setAngle((this.getAngle() + amount * ANGLECHANGEAMOUNT));
 
-	if (this.getAngle() <= 0) {
-	    this.setAngle(this.getAngle() + 360);
-	} 
-
-	System.out.println("Angle: " + this.getAngle());
+	// Logging
+	if (LoggerConfig.ON) {
+	    Log.debug(TAG + "Angle: " + this.getAngle());
+	}
 
     }
-
 
     public float getHeight() {
 	return height;
@@ -109,4 +122,14 @@ public class Rect extends Moveable {
 	this.speed = speed;
     }
 
+    public void bounceY() {
+	this.setAngle(this.getAngle() * -1);
+
+    }
+
+    public void bounceX() {
+
+	this.setAngle(this.getAngle() + 180);
+
+    }
 }

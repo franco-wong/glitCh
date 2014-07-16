@@ -16,8 +16,8 @@ public class StateTransitions {
     private static final String TAG = "StateTransitions";
 
     public static void openPlayOption(StateBasedGame sbg) {
-	sbg.enterState(1, new FadeOutTransition(Color.white, 4000),
-		new FadeInTransition(Color.white, 4000));
+	sbg.enterState(1, new FadeOutTransition(Color.transparent, 1000),
+		new FadeInTransition(Color.transparent, 1000));
     }
 
     public static void openDirections(StateBasedGame sbg) {
@@ -37,10 +37,16 @@ public class StateTransitions {
 
     public static void quitOption(GameContainer gc, StateBasedGame sbg) {
 	if (LoggerConfig.ON) {
+	    
 	  Log.debug(TAG + ": Game closed successfully.");
 	  System.out.println(TAG + ": Game closed successfully.");
 	}
 	gc.exit();
+    }
+    
+    public static void openPauseMenu(StateBasedGame sbg) {
+	sbg.enterState(2, new FadeOutTransition(Color.transparent, 1000),
+		new FadeInTransition(Color.transparent, 1000));
     }
 
 }
