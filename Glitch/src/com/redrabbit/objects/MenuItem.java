@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.helpers.Moveable;
 
@@ -39,7 +40,7 @@ public class MenuItem extends Moveable {
 	 * Super class variables. Will set vector in super class's constructor,
 	 * as well as set the width and height.
 	 */
-	super(x, y, angle, speed);
+	super(new Vector2f(x, y), angle, speed);
 	this.setName(name);
 	this.setWidth(width);
 	this.setHeight(heigth);

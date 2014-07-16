@@ -1,117 +1,112 @@
 package com.redrabbit.objects;
 
+
+
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
+
+import com.redrabbit.helpers.Moveable;
+
 /**
  * To be deleted soon. WIP
  * 
  * @author rabbitfighter
  *
  */
-public class Rect {
+public class Rect extends Moveable {
 
-    private int width;
-    private int height;
-    private float x, y;
-    private float velocityX, velocityY;
-    private boolean collidedX, collidedY;
+    private float width;
+    private float height;
+    private float speed;
+    private Rectangle bounds;
 
-    public Rect() {
-	this.setWidth(50);
-	this.setHeight(100);
-	this.setX(50);
-	this.setY(50);
-	this.setCollidedX(false);
-	this.setCollidedY(false);
+    public final static float SPEEDCHANGEAMOUNT = .010f;
+    public final static float ANGLECHANGEAMOUNT = 2f;
+    public final static float MAX_SPEED = 2f;
 
-    }
+    /**
+     * Constructor for a "Rectangle" of sorts for testing purposes.
+     * 
+     * @param x
+     *            The x coord.
+     * @param y
+     *            The y coord.
+     * @param width
+     *            The width of the rectangle in pixels.
+     * @param height
+     *            The height of the rectangle in pixels.
+     * @param angle
+     *            The angle of the rectangle in pixels.
+     * @param speed
+     *            The speed the object is moving.
+     */
 
-    public void rectGo(int delta) {
-
-	// Set initial velocities (before collision)
-	if (!this.isCollidedX()) {
-	    velocityX = delta * .50f;
-	}
-
-	if (!this.isCollidedY()) {
-	    velocityY = delta * .50f;
-	}
-
-	// If collision with walls, reverse velocity for x, y
-	if (this.getX() < 0) {
-	    this.setX(0);
-	    velocityX = -velocityX;
-	    this.setCollidedX(true);
-	} else if (this.getX() + this.getWidth() > 900) {
-	    this.setX(900 - 50);
-	    velocityX = -1 * velocityX;
-	    this.setCollidedX(true);
-	}
-
-	if (this.getY() < 0) {
-	    this.setY(0);
-	    velocityY = -velocityY;
-	    this.setCollidedY(true);
-	} else if (this.getY() + this.getHeight() > 700) {
-	    this.setY(700 - this.getHeight());
-	    velocityY = -velocityY;
-	    this.setCollidedY(true);
-	}
-
-	// Move x, y
-	this.setX(this.getX() + velocityX);
-	this.setY(this.getY() + velocityY);
+    public Rect(Vector2f vector, float width, float height, float angle,
+	    float velocity) {
+	
+	super(vector, angle, velocity);
+	this.setWidth(width);
+	this.setHeight(height);
+	// Make a rectangle to represent bounds for collision testing.
+	this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
+		.getY(), this.getWidth(), this.getHeight()));
+	this.setVelocity(velocity);
 
     }
 
-    private void randomColor() {
+    public void changeVelocity(float s) {
+	this.setVelocity(this.getVelocity() + s * SPEEDCHANGEAMOUNT);
+	if (this.getVelocity() >= MAX_SPEED)
+	    this.setVelocity(MAX_SPEED);
+	if (this.getVelocity() <= -MAX_SPEED)
+	    this.setVelocity(-MAX_SPEED);
+	System.out.println("Velocity: " + this.getVelocity());
+    }
+
+    // turn the player by a given angle amount
+    public void turn(int amount) {
+
+	this.setAngle((this.getAngle() + amount * ANGLECHANGEAMOUNT));
+
+	if (this.getAngle() <= 0) {
+	    this.setAngle(this.getAngle() + 360);
+	} 
+
+	System.out.println("Angle: " + this.getAngle());
 
     }
 
-    public float getX() {
-	return x;
-    }
 
-    public void setX(float x) {
-	this.x = x;
-    }
-
-    public int getHeight() {
+    public float getHeight() {
 	return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
 	this.height = height;
     }
 
-    public float getY() {
-	return y;
-    }
-
-    public void setY(float y) {
-	this.y = y;
-    }
-
-    public int getWidth() {
+    public float getWidth() {
 	return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(float width) {
 	this.width = width;
     }
 
-    public boolean isCollidedX() {
-	return collidedX;
+    public Rectangle getBounds() {
+	return bounds;
     }
 
-    public void setCollidedX(boolean collidedX) {
-	this.collidedX = collidedX;
+    public void setBounds(Rectangle bounds) {
+	this.bounds = bounds;
     }
 
-    public boolean isCollidedY() {
-	return collidedY;
+    public float getSpeed() {
+	return speed;
     }
 
-    public void setCollidedY(boolean collidedY) {
-	this.collidedY = collidedY;
+    public void setSpeed(float speed) {
+	this.speed = speed;
     }
 
 }

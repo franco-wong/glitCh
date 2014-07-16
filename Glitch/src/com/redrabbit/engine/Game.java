@@ -28,8 +28,8 @@ public class Game extends StateBasedGame {
      */
     public Game(String gamename) {
 	super(gamename);
-	this.addState(new PlayState(menu));
-	this.addState(new MainMenuState(play));
+	this.addState(new PlayState(play));
+	this.addState(new MainMenuState(menu));
 	this.addState(new PauseState(pause));
     }
 
@@ -43,15 +43,15 @@ public class Game extends StateBasedGame {
 
     public static void main(String[] args) {
 
-	AppGameContainer appgc;
+	AppGameContainer appgc = null;
 
 	try {
 	    appgc = new AppGameContainer(new Game(gamename));
 	    appgc.setDisplayMode(900, 700, false);
-	    appgc.setTargetFrameRate(60);
+	    appgc.setTargetFrameRate(30);
 	    appgc.start();
 	} catch (SlickException e) {
-	    // TODO Auto-generated catch block
+	    appgc.destroy();
 	    e.printStackTrace();
 	}
 

@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.constants.CustomColors;
 import com.redrabbit.helpers.FontHelper;
+import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Menu;
 import com.redrabbit.objects.MenuItem;
@@ -106,13 +107,14 @@ public class MainMenuState extends BasicGameState {
 	g.setFont(cosmicfade);
 
 	// Find if mouse is hovering.
-	for (int i = 0; i < menuItems.length - 1; i++) {
+	for (int i = 0; i < menuItems.length; i++) {
 	    if (menuItems[i].isSelected()) {
 		g.drawString(MenuItem.reverseString(menuItems[i].getName()),
-			menuItems[i].getX(), menuItems[i].getY());
+			menuItems[i].getVector().getX(), menuItems[i]
+				.getVector().getY());
 	    } else {
-		g.drawString(menuItems[i].getName(), menuItems[i].getX(),
-			menuItems[i].getY());
+		g.drawString(menuItems[i].getName(), menuItems[i].getVector()
+			.getX(), menuItems[i].getVector().getY());
 	    }
 	}
 
@@ -174,9 +176,39 @@ public class MainMenuState extends BasicGameState {
 	 * If the mouse is hovering the bounds of the menu item, the items
 	 * selected variable is set to true, otherwise, it is set to false
 	 */
-	for (int i = 0; i < menuItems.length - 1; i++) {
+	for (int i = 0; i < menuItems.length; i++) {
 	    if (menuItems[i].isHovering(mouseX, mouseY)) {
+		
+		// Set the menu's selected proerty to tru.
 		menuItems[i].setSelected(true);
+		
+		// If mouse clicks on an item, handle it.
+		if (input.isMousePressed(0)) {
+
+		    switch (i) {
+
+		    case 0:
+			StateTransitions.openPlayOption(sbg);
+			break;
+			
+		    case 1: 
+			StateTransitions.openDirections(sbg);
+			break;
+			
+		    case 2:
+			StateTransitions.openScores(sbg);
+			break;
+			
+		    case 3: 
+			StateTransitions.openCredits(sbg);
+			break;
+			
+		    case 4:
+			StateTransitions.quitOption(gc, sbg);
+			break;
+		    }
+
+		}
 	    } else {
 		menuItems[i].setSelected(false);
 	    }
