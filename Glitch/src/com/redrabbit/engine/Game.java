@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.redrabbit.constants.GameStrings;
 import com.redrabbit.states.MainMenuState;
 import com.redrabbit.states.PauseState;
 import com.redrabbit.states.PlayState;
@@ -15,7 +16,7 @@ import com.redrabbit.states.PlayState;
  */
 public class Game extends StateBasedGame {
 
-    public static final String gamename = "glitCh";
+    
 
     // States
     public static final int menu = 0;
@@ -46,8 +47,8 @@ public class Game extends StateBasedGame {
 	AppGameContainer appgc = null;
 
 	try {
-	    appgc = new AppGameContainer(new Game(gamename));
-	    appgc.setDisplayMode(1024, 796, false);
+	    appgc = new AppGameContainer(new Game(GameStrings.GAME_NAME));
+	    appgc.setDisplayMode(1024, 832, false);
 	    appgc.setTargetFrameRate(60);
 	    appgc.start();
 	} catch (SlickException e) {

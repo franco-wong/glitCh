@@ -27,6 +27,8 @@ public class FontHelper {
     // For logging.
     private static final String TAG = "FontHelper";
 
+   
+
     /**
      * Returns a True Type Font (the recommmended font standard for use in
      * Slick2D), based on the name and the size given.
@@ -38,14 +40,16 @@ public class FontHelper {
      * @return ttf - the True Type font that was created for use in our game.
      */
     public static TrueTypeFont setTTF(String font, float size) {
+	
+	Font awtFont = null;
 
 	try {
 	    // Open an input stream to get resources
-	    InputStream inputStream = ResourceLoader.getResourceAsStream(path
-		    + font);
+	    InputStream inputStream = ResourceLoader
+		    .getResourceAsStream((path + font).toString());
 
 	    // Create an awt Font object from the input stream as a TrueTypeFont
-	    Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+	    awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 
 	    // Set font size
 	    awtFont = awtFont.deriveFont(size);

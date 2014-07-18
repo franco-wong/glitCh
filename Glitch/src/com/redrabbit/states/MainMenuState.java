@@ -1,5 +1,7 @@
 package com.redrabbit.states;
 
+import javax.swing.text.StyleConstants.ColorConstants;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,7 +12,8 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.redrabbit.constants.CustomColors;
+import com.redrabbit.constants.GameColors;
+import com.redrabbit.constants.GameStrings;
 import com.redrabbit.helpers.FontHelper;
 import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
@@ -27,17 +30,7 @@ public class MainMenuState extends BasicGameState {
     @SuppressWarnings("unused")
     private final String TAG = "BasicGameState";
 
-    // Menu Title.
-    private final String TITLE = "glitCh";
-
-    // Menu Item strings
-    private final String DIRECTIONS = "direcions";
-    private final String PLAY = "play";
-    private final String SCORES = "scores";
-    private final String CREDITS = "credits";
-    private final String QUIT = "	quit";
-
-    // ==> WIP ... Path to image. Need to clean this up <==
+       // ==> WIP ... Path to image. Need to clean this up <==
     private final String imagePath = "res/img/layer.png";
 
     // x, y coordinates
@@ -64,16 +57,16 @@ public class MainMenuState extends BasicGameState {
 	menuItems = new MenuItem[5];
 
 	// Add menu items: (title, x, y, width, height, angle, speed, selected)
-	menuItems[0] = new MenuItem(PLAY, 472f, 160f, 110f, 100f, 0f, 0f, false);
-	menuItems[1] = new MenuItem(DIRECTIONS, 392f, 270f, 290f, 100f, 0f, 0f,
+	menuItems[0] = new MenuItem(GameStrings.PLAY, 472f, 160f, 110f, 100f, 0f, 0f, false);
+	menuItems[1] = new MenuItem(GameStrings.DIRECTIONS, 392f, 270f, 290f, 100f, 0f, 0f,
 		false);
-	menuItems[2] = new MenuItem(SCORES, 437, 380, 210, 100, 0f, 0f, false);
-	menuItems[3] = new MenuItem(CREDITS, 428, 490, 220, 100, 0f, 0f, false);
-	menuItems[4] = new MenuItem(QUIT, 472, 600, 110, 100, 0f, 0f, false);
+	menuItems[2] = new MenuItem(GameStrings.SCORES, 437, 380, 210, 100, 0f, 0f, false);
+	menuItems[3] = new MenuItem(GameStrings.CREDITS, 428, 490, 220, 100, 0f, 0f, false);
+	menuItems[4] = new MenuItem(GameStrings.QUIT, 472, 600, 110, 100, 0f, 0f, false);
 
 	// Create the menu object with (title, the menu items array, and the
 	// image).
-	mainMenu = new Menu(TITLE, menuItems, new Image(imagePath));
+	mainMenu = new Menu(GameStrings.TITLE, menuItems, new Image(imagePath));
 
 	// Initialize fonts.
 	checkbook = FontHelper.setTTF("checkbook.ttf", 18);
@@ -99,8 +92,8 @@ public class MainMenuState extends BasicGameState {
 
 	// Title
 	g.setFont(cosmicfade);
-	g.setColor(CustomColors.yellow);
-	g.drawString(TITLE, 442, 30);
+	g.setColor(GameColors.yellow);
+	g.drawString(GameStrings.TITLE, 442, 30);
 
 	// Menu Items
 	g.setColor(Color.white);
@@ -118,6 +111,7 @@ public class MainMenuState extends BasicGameState {
 	    }
 	}
 
+	g.setColor(GameColors.yellow);
 	// Logging.
 	if (LoggerConfig.ON) {
 	    g.resetFont();

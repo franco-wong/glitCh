@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
+import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.helpers.Moveable;
 import com.redrabbit.logging.LoggerConfig;
 
@@ -21,10 +22,6 @@ public class Rect extends Moveable {
     private float height;
     private float speed;
     private Rectangle bounds;
-
-    public final static float SPEEDCHANGEAMOUNT = .016f;
-    public final static float ANGLECHANGEAMOUNT = 4f;
-    public final static float MAX_SPEED = 4f;
 
     /**
      * Constructor for a "Rectangle" of sorts for testing purposes.
@@ -57,11 +54,12 @@ public class Rect extends Moveable {
     }
 
     public void changeVelocity(float s) {
-	this.setVelocity(this.getVelocity() + s * SPEEDCHANGEAMOUNT);
-	if (this.getVelocity() >= MAX_SPEED)
-	    this.setVelocity(MAX_SPEED);
-	if (this.getVelocity() <= -MAX_SPEED)
-	    this.setVelocity(-MAX_SPEED);
+	this.setVelocity(this.getVelocity() + s
+		* GameNumbers.PLAYER_SPEED_CHANGE_AMOUNT);
+	if (this.getVelocity() >= GameNumbers.PLAYER_MAX_SPEED)
+	    this.setVelocity(GameNumbers.PLAYER_MAX_SPEED);
+	if (this.getVelocity() <= -GameNumbers.PLAYER_MAX_SPEED)
+	    this.setVelocity(-GameNumbers.PLAYER_MAX_SPEED);
 
 	// Logging
 	if (LoggerConfig.ON) {
@@ -81,7 +79,8 @@ public class Rect extends Moveable {
 	}
 
 	// Set the angle.
-	this.setAngle((this.getAngle() + amount * ANGLECHANGEAMOUNT));
+	this.setAngle((this.getAngle() + amount
+		* GameNumbers.PLAYER_ANGLE_CHANGE_AMOUNT));
 
 	// Logging
 	if (LoggerConfig.ON) {

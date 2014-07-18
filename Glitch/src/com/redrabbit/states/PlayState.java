@@ -12,10 +12,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
+import com.redrabbit.constants.GameColors;
 import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Arena;
 import com.redrabbit.objects.Rect;
+import com.redrabbit.objects.SmartMap;
+import com.redrabbit.objects.SmartTile;
 
 /**
  * Purely experimental at this point... WIP...
@@ -32,6 +35,7 @@ public class PlayState extends BasicGameState {
     // Our rectangle to play with
     Rect rect;
     Arena arena;
+    SmartMap map, bufferMap;
 
     // For mouse coords.
     protected float mouseX;
@@ -65,6 +69,9 @@ public class PlayState extends BasicGameState {
 	// New Arena. X, X, with, height.
 	arena = new Arena(0, 0, gc.getWidth(), gc.getHeight());
 
+	// New Tiled map. Vector, angle, velocity
+	map = new SmartMap(new Vector2f(0, 0));
+
     }
 
     /*
@@ -78,11 +85,31 @@ public class PlayState extends BasicGameState {
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	    throws SlickException {
 
+	// Draw the tiles.
+	for (int i = 0; i < map.getWidth(); i++) {
+	    for (int j = 0; j < map.getHeight(); j++) {
+		// Get the tile's random color.
+		g.setColor(map.getMap()[i][j].getColor());
+		if (map.isFilled()) {
+		    g.fillRect(map.getMap()[i][j].getVector().getX(),
+			    map.getMap()[i][j].getVector().getY(),
+			    map.getMap()[i][j].getWidth(),
+			    map.getMap()[i][j].getHeight());
+		} else {
+		    g.drawRect(map.getMap()[i][j].getVector().getX(),
+			    map.getMap()[i][j].getVector().getY(),
+			    map.getMap()[i][j].getWidth(),
+			    map.getMap()[i][j].getHeight());
+		}
+
+	    }
+	}
+
 	// g.drawRect(x, y, 50, 100);
 	g.setColor(Color.red);
 	g.fillRect(rect.getVector().getX(), rect.getVector().getY(),
 		rect.getWidth(), rect.getHeight());
-	g.setColor(Color.white);
+	g.setColor(Color.yellow);
 
 	// Logging.
 	if (LoggerConfig.ON) {
@@ -147,6 +174,41 @@ public class PlayState extends BasicGameState {
 	    StateTransitions.openPauseMenu(sbg);
 	}
 
+	// F to fill the colored tiles
+	if (input.isKeyPressed(Input.KEY_C)) {
+	    if (map.isFilled()) {
+
+		map.setFilled(false);
+	    } else {
+		map.setFilled(true);
+	    }
+
+	    bufferMap = map;
+
+	    for (int i = 0; i < map.getWidth(); i++) {
+		for (int j = 0; j < map.getHeight(); j++) {
+		    map.getMap()[i][j].setColor(GameColors.getRandomColor());
+		}
+	    }
+	}
+
+	if (input.isKeyPressed(Input.KEY_G)) {
+
+	    if (map.isFilled()) {
+		map.setFilled(false);
+	    } else {
+		map.setFilled(true);
+	    }
+
+	    bufferMap = map;
+
+	    for (int i = 0; i < map.getWidth(); i++) {
+		for (int j = 0; j < map.getHeight(); j++) {
+		    map.getMap()[i][j].setColor(GameColors.getRandomHue());
+		}
+	    }
+	}
+
 	/***** End Input *****/
 
 	if (rect.getVector().getX() <= 0
@@ -154,7 +216,7 @@ public class PlayState extends BasicGameState {
 			.getWidth() - T) {
 	    rect.bounceX();
 	}
-	
+
 	if (rect.getVector().getY() <= 0 + T
 		|| rect.getVector().getY() + rect.getHeight() >= arena
 			.getHeight() - T) {

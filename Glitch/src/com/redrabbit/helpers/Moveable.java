@@ -10,9 +10,10 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public class Moveable {
    
+    private Vector2f vector;
     private float angle;
     private float velocity;
-    private Vector2f vector;
+   
 
     public Moveable(Vector2f vector, float angle, float velocity) {
 
