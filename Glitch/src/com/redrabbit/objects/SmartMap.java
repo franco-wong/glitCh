@@ -17,11 +17,12 @@ public class SmartMap extends Moveable {
 
     // New smart Map.
     private SmartTile[][] map;
+    private GroundTile[][] tiledMap;
     private Rectangle bounds;
     private int width, height;
     
     // WIP
-    private boolean filled;
+    private boolean filled, tiled;
     
 
     /**
@@ -38,12 +39,12 @@ public class SmartMap extends Moveable {
 	// Set width and height.
 	this.setWidth(GameNumbers.SMART_MAP_WIDTH);
 	this.setHeight(GameNumbers.SMART_MAP_HEIGHT);
+	// Set bounds.
+		this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
+			.getY(), this.getWidth(), this.getHeight()));
+		
 	// New Smart Map made of Smart tiles. <==WIP (RANDOM COLOR)
 	this.setMap(new SmartTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
-	// Set bounds.
-	this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
-		.getY(), this.getWidth(), this.getHeight()));
-
 	// Draw the tiles.
 	for (int i = 0; i < this.getWidth(); i++) {
 	    for (int j = 0; j < this.getHeight(); j++) {
@@ -54,7 +55,19 @@ public class SmartMap extends Moveable {
 	    }
 	}
 	
-	// Set filed false upon build.
+	// New tiled map.
+	this.setTiledMap(new GroundTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
+	// Draw the tiles.
+	for (int i = 0; i < this.getWidth(); i++) {
+	    for (int j = 0; j < this.getHeight(); j++) {
+		// Set a new Smart Tile.
+		this.getTiledMap()[i][j] = new GroundTile(new Vector2f(i
+			* GameNumbers.SMART_TILE_WIDTH, j
+			* GameNumbers.SMART_TILE_HEIGHT));
+	    }
+	}
+	
+	// Set filled false upon build.
 	this.setFilled(false);
     }
 
@@ -99,5 +112,23 @@ public class SmartMap extends Moveable {
     public void setFilled(boolean filled) {
 	this.filled = filled;
     }
+
+    public boolean isTiled() {
+	return tiled;
+    }
+
+    public void setTiled(boolean tiled) {
+	this.tiled = tiled;
+    }
+
+    public GroundTile[][] getTiledMap() {
+	return tiledMap;
+    }
+
+    public void setTiledMap(GroundTile[][] tiledMap) {
+	this.tiledMap = tiledMap;
+    }
+
+   
 
 }

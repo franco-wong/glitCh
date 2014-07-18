@@ -9,19 +9,25 @@ import org.newdawn.slick.geom.Vector2f;
  *
  */
 public class Moveable {
-   
+
     private Vector2f vector;
     private float angle;
     private float velocity;
-   
 
+    /**
+     * Contrcutor for a moveable item.
+     * 
+     * @param vector
+     *            The vector passed in.
+     * @param angle
+     *            The angle passed in
+     * @param velocity
+     *            The velocity passed in.
+     */
     public Moveable(Vector2f vector, float angle, float velocity) {
-
 	this.setVector(vector);
 	this.setAngle(angle);
 	this.setVelocity(velocity);
-	
-
     }
 
     /**
@@ -32,17 +38,16 @@ public class Moveable {
     public Vector2f updateVector() {
 	// Get angle in radians.
 	float angleRadians = (float) Math.toRadians(this.getAngle());
-	
+
 	// Return a new Vectir based on trajectory
-	return new Vector2f((float) (this.getVector().getX() + this.getVelocity() * Math.cos(angleRadians)),
-		(float) (this.getVector().getY() + this.getVelocity() * Math.sin(angleRadians)));
+	return new Vector2f(
+		(float) (this.getVector().getX() + this.getVelocity()
+			* Math.cos(angleRadians)), (float) (this.getVector()
+			.getY() + this.getVelocity() * Math.sin(angleRadians)));
 
     }
-    
 
     /***** Getters/Setters *****/
-
-  
 
     public float getAngle() {
 	return this.angle;
@@ -51,8 +56,6 @@ public class Moveable {
     public void setAngle(float angle) {
 	this.angle = angle;
     }
-
-   
 
     public Vector2f getVector() {
 	return vector;

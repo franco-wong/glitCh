@@ -27,8 +27,6 @@ public class FontHelper {
     // For logging.
     private static final String TAG = "FontHelper";
 
-   
-
     /**
      * Returns a True Type Font (the recommmended font standard for use in
      * Slick2D), based on the name and the size given.
@@ -40,7 +38,8 @@ public class FontHelper {
      * @return ttf - the True Type font that was created for use in our game.
      */
     public static TrueTypeFont setTTF(String font, float size) {
-	
+
+	// Declare variable and set to null before try/catch.
 	Font awtFont = null;
 
 	try {
@@ -56,6 +55,11 @@ public class FontHelper {
 
 	    // Create a new TrueTypeFont
 	    ttf = new TrueTypeFont(awtFont, false);
+
+	    // Logging.
+	    if (LoggerConfig.ON) {
+		Log.info(TAG + " Font loaded successfully.");
+	    }
 
 	} catch (Exception e) {
 	    e.printStackTrace();

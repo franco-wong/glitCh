@@ -16,8 +16,6 @@ import com.redrabbit.states.PlayState;
  */
 public class Game extends StateBasedGame {
 
-    
-
     // States
     public static final int menu = 0;
     public static final int play = 1;
@@ -29,11 +27,19 @@ public class Game extends StateBasedGame {
      */
     public Game(String gamename) {
 	super(gamename);
-	this.addState(new PlayState(play));
+	// Bufg fix. If menu is not first, other screens will breifly flash.
 	this.addState(new MainMenuState(menu));
+	this.addState(new PlayState(play));
 	this.addState(new PauseState(pause));
     }
 
+    /*
+     * (non-Javadoc) Initializes the states.
+     * 
+     * @see
+     * org.newdawn.slick.state.StateBasedGame#initStatesList(org.newdawn.slick
+     * .GameContainer)
+     */
     public void initStatesList(GameContainer gc) throws SlickException {
 	this.getState(menu).init(gc, this);
 	this.getState(play).init(gc, this);
@@ -42,6 +48,12 @@ public class Game extends StateBasedGame {
 
     }
 
+    /**
+     * Main class runs the application and calls a new AppGameContainer for our
+     * game.
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
 
 	AppGameContainer appgc = null;
@@ -58,4 +70,4 @@ public class Game extends StateBasedGame {
 
     }
 
-}
+}// EOF

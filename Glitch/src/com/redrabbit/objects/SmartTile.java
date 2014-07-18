@@ -1,8 +1,10 @@
 package com.redrabbit.objects;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
+
 import com.redrabbit.constants.GameColors;
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.helpers.Moveable;
@@ -18,8 +20,15 @@ public class SmartTile extends Moveable {
     private Rectangle bounds;
     private Color color;
     private int width, height;
+    private Image image;
+    private boolean passable;
 
-    // Constructor.
+    /**
+     * Constructor only needs a vector to build.
+     * 
+     * @param vector
+     *            - the vector passed in.
+     */
     public SmartTile(Vector2f vector) {
 	// Set the vector for the new Smart Tile. Velocity and angle are 0.
 	super(vector, 0f, 0f);
@@ -67,4 +76,20 @@ public class SmartTile extends Moveable {
 	this.height = height;
     }
 
-}// EOF
+    public Image getImage() {
+	return image;
+    }
+
+    public void setImage(Image image) {
+	this.image = image;
+    }
+
+    public boolean isPassable() {
+	return passable;
+    }
+
+    public void setPassable(boolean passable) {
+	this.passable = passable;
+    }
+
+}//EOF

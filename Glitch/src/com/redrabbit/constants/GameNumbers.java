@@ -16,6 +16,10 @@ public class GameNumbers {
     public final static int SMART_TILE_WIDTH = 32;
     public final static int SMART_TILE_HEIGHT = 32;
 
+    // World constants
+    public final static int WORLD_WIDTH = 3;
+    public final static int WORLD_HEIGHT = 3;
+
     // Player constants.
     public final static float PLAYER_SPEED_CHANGE_AMOUNT = .0768f;
     public final static float PLAYER_ANGLE_CHANGE_AMOUNT = 4f;

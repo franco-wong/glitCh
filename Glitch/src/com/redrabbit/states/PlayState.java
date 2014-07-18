@@ -34,7 +34,11 @@ public class PlayState extends BasicGameState {
 
     // Our rectangle to play with
     Rect rect;
+
+    // Our "arena" WIP
     Arena arena;
+
+    // Our map, and a buffer to swap maps if needed
     SmartMap map, bufferMap;
 
     // For mouse coords.
@@ -71,6 +75,7 @@ public class PlayState extends BasicGameState {
 
 	// New Tiled map. Vector, angle, velocity
 	map = new SmartMap(new Vector2f(0, 0));
+	map.setTiled(false);
 
     }
 
@@ -90,16 +95,20 @@ public class PlayState extends BasicGameState {
 	    for (int j = 0; j < map.getHeight(); j++) {
 		// Get the tile's random color.
 		g.setColor(map.getMap()[i][j].getColor());
-		if (map.isFilled()) {
+		if (map.isFilled() && !map.isTiled()) {
 		    g.fillRect(map.getMap()[i][j].getVector().getX(),
 			    map.getMap()[i][j].getVector().getY(),
 			    map.getMap()[i][j].getWidth(),
 			    map.getMap()[i][j].getHeight());
-		} else {
+		} else if (!map.isFilled() && !map.isTiled()) {
 		    g.drawRect(map.getMap()[i][j].getVector().getX(),
 			    map.getMap()[i][j].getVector().getY(),
 			    map.getMap()[i][j].getWidth(),
 			    map.getMap()[i][j].getHeight());
+		} else if (map.isTiled()) {
+		    g.drawImage(map.getTiledMap()[i][j].getImage(),
+			    map.getTiledMap()[i][j].getVector().getX(),
+			    map.getTiledMap()[i][j].getVector().getY());
 		}
 
 	    }
@@ -174,8 +183,12 @@ public class PlayState extends BasicGameState {
 	    StateTransitions.openPauseMenu(sbg);
 	}
 
-	// F to fill the colored tiles
+	/*
+	 * F to fill the colored tiles. F will swap between filled and not
+	 * filled.
+	 */
 	if (input.isKeyPressed(Input.KEY_C)) {
+	    map.setTiled(false);
 	    if (map.isFilled()) {
 
 		map.setFilled(false);
@@ -192,12 +205,31 @@ public class PlayState extends BasicGameState {
 	    }
 	}
 
+	/* G for Greyscale tiles. G will swap between filled and not filled. */
 	if (input.isKeyPressed(Input.KEY_G)) {
-
+	    map.setTiled(false);
 	    if (map.isFilled()) {
 		map.setFilled(false);
 	    } else {
 		map.setFilled(true);
+	    }
+
+	    bufferMap = map;
+
+	    for (int i = 0; i < map.getWidth(); i++) {
+		for (int j = 0; j < map.getHeight(); j++) {
+		    map.getMap()[i][j].setColor(GameColors.getRandomHue());
+		}
+	    }
+	}
+
+	// I for Tiled Images
+	if (input.isKeyPressed(Input.KEY_I)) {
+
+	    if (map.isTiled()) {
+		map.setTiled(false);
+	    } else {
+		map.setTiled(true);
 	    }
 
 	    bufferMap = map;

@@ -53,6 +53,12 @@ public class Rect extends Moveable {
 
     }
 
+    /**
+     * Changesa the velocity of the object.
+     * 
+     * @param s
+     *            - the velocity passed in.
+     */
     public void changeVelocity(float s) {
 	this.setVelocity(this.getVelocity() + s
 		* GameNumbers.PLAYER_SPEED_CHANGE_AMOUNT);
@@ -68,7 +74,12 @@ public class Rect extends Moveable {
 
     }
 
-    // turn the player by a given angle amount
+    /**
+     * Turns player by given amount * a constant in the Numberxonstants class.
+     * 
+     * @param amount
+     *            - The amount in degrees passed in.
+     */
     public void turn(int amount) {
 
 	// make sure angles are positive.
@@ -88,6 +99,8 @@ public class Rect extends Moveable {
 	}
 
     }
+
+    /***** Getters/Setters *****/
 
     public float getHeight() {
 	return height;
@@ -131,4 +144,5 @@ public class Rect extends Moveable {
 	this.setAngle(this.getAngle() + 180);
 
     }
-}
+
+}// EOF
