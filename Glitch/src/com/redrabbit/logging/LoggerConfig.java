@@ -8,7 +8,6 @@ package com.redrabbit.logging;
  * @author rabbitfighter
  * 
  */
-public class LoggerConfig
-{
-	public static final boolean ON = true;
+public class LoggerConfig {
+    public static final boolean ON = true;
 }

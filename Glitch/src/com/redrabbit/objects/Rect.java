@@ -1,135 +1,148 @@
 package com.redrabbit.objects;
 
-public class Rect
-{
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
-	private int width;
-	private int height;
-	private float x, y;
-	private float velocityX, velocityY;
-	private boolean collidedX, collidedY;
+import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.helpers.Moveable;
+import com.redrabbit.logging.LoggerConfig;
 
-	public Rect()
-	{
-		this.setWidth(50);
-		this.setHeight(100);
-		this.setX(50);
-		this.setY(50);
-		this.setCollidedX(false);
-		this.setCollidedY(false);
+/**
+ * To be deleted soon. WIP
+ * 
+ * @author rabbitfighter
+ *
+ */
+public class Rect extends Moveable {
 
+    private static final String TAG = "Rect";
+
+    private float width;
+    private float height;
+    private float speed;
+    private Rectangle bounds;
+
+    /**
+     * Constructor for a "Rectangle" of sorts for testing purposes.
+     * 
+     * @param x
+     *            The x coord.
+     * @param y
+     *            The y coord.
+     * @param width
+     *            The width of the rectangle in pixels.
+     * @param height
+     *            The height of the rectangle in pixels.
+     * @param angle
+     *            The angle of the rectangle in pixels.
+     * @param speed
+     *            The speed the object is moving.
+     */
+
+    public Rect(Vector2f vector, float width, float height, float angle,
+	    float velocity) {
+
+	super(vector, angle, velocity);
+	this.setWidth(width);
+	this.setHeight(height);
+	// Make a rectangle to represent bounds for collision testing.
+	this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
+		.getY(), this.getWidth(), this.getHeight()));
+	this.setVelocity(velocity);
+
+    }
+
+    /**
+     * Changesa the velocity of the object.
+     * 
+     * @param s
+     *            - the velocity passed in.
+     */
+    public void changeVelocity(float s) {
+	this.setVelocity(this.getVelocity() + s
+		* GameNumbers.PLAYER_SPEED_CHANGE_AMOUNT);
+	if (this.getVelocity() >= GameNumbers.PLAYER_MAX_SPEED)
+	    this.setVelocity(GameNumbers.PLAYER_MAX_SPEED);
+	if (this.getVelocity() <= -GameNumbers.PLAYER_MAX_SPEED)
+	    this.setVelocity(-GameNumbers.PLAYER_MAX_SPEED);
+
+	// Logging
+	if (LoggerConfig.ON) {
+	    Log.debug(" " + TAG + "Velocity: " + this.getVelocity());
 	}
 
-	public void rectGo(int delta)
-	{
+    }
 
-		// Set initial velocities (before collision)
-		if (!this.isCollidedX())
-		{
-			velocityX = delta * .50f;
-		}
+    /**
+     * Turns player by given amount * a constant in the Numberxonstants class.
+     * 
+     * @param amount
+     *            - The amount in degrees passed in.
+     */
+    public void turn(int amount) {
 
-		if (!this.isCollidedY())
-		{
-			velocityY = delta * .50f;
-		}
-
-		// If collision with walls, reverse velocity for x, y
-		if (this.getX() < 0)
-		{
-			this.setX(0);
-			velocityX = -velocityX;
-			this.setCollidedX(true);
-		}
-		else if (this.getX() + this.getWidth() > 900)
-		{
-			this.setX(900 - 50);
-			velocityX = -1 * velocityX;
-			this.setCollidedX(true);
-		}
-
-		if (this.getY() < 0)
-		{
-			this.setY(0);
-			velocityY = -velocityY;
-			this.setCollidedY(true);
-		}
-		else if (this.getY() + this.getHeight() > 700)
-		{
-			this.setY(700 - this.getHeight());
-			velocityY = -velocityY;
-			this.setCollidedY(true);
-		}
-
-		// Move x, y
-		this.setX(this.getX() + velocityX);
-		this.setY(this.getY() + velocityY);
-
+	// make sure angles are positive.
+	if (this.getAngle() >= 360) {
+	    this.setAngle(this.getAngle() % 360);
+	} else if (this.getAngle() <= 0) {
+	    this.setAngle(this.getAngle() + 360);
 	}
 
-	private void randomColor()
-	{
+	// Set the angle.
+	this.setAngle((this.getAngle() + amount
+		* GameNumbers.PLAYER_ANGLE_CHANGE_AMOUNT));
 
+	// Logging
+	if (LoggerConfig.ON) {
+	    Log.debug(TAG + "Angle: " + this.getAngle());
 	}
 
-	public float getX()
-	{
-		return x;
-	}
+    }
 
-	public void setX(float x)
-	{
-		this.x = x;
-	}
+    /***** Getters/Setters *****/
 
-	public int getHeight()
-	{
-		return height;
-	}
+    public float getHeight() {
+	return height;
+    }
 
-	public void setHeight(int height)
-	{
-		this.height = height;
-	}
+    public void setHeight(float height) {
+	this.height = height;
+    }
 
-	public float getY()
-	{
-		return y;
-	}
+    public float getWidth() {
+	return width;
+    }
 
-	public void setY(float y)
-	{
-		this.y = y;
-	}
+    public void setWidth(float width) {
+	this.width = width;
+    }
 
-	public int getWidth()
-	{
-		return width;
-	}
+    public Rectangle getBounds() {
+	return bounds;
+    }
 
-	public void setWidth(int width)
-	{
-		this.width = width;
-	}
+    public void setBounds(Rectangle bounds) {
+	this.bounds = bounds;
+    }
 
-	public boolean isCollidedX()
-	{
-		return collidedX;
-	}
+    public float getSpeed() {
+	return speed;
+    }
 
-	public void setCollidedX(boolean collidedX)
-	{
-		this.collidedX = collidedX;
-	}
+    public void setSpeed(float speed) {
+	this.speed = speed;
+    }
 
-	public boolean isCollidedY()
-	{
-		return collidedY;
-	}
+    public void bounceY() {
+	this.setAngle(this.getAngle() * -1);
 
-	public void setCollidedY(boolean collidedY)
-	{
-		this.collidedY = collidedY;
-	}
+    }
 
-}
+    public void bounceX() {
+
+	this.setAngle(this.getAngle() + 180);
+
+    }
+
+}// EOF
