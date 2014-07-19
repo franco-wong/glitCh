@@ -9,12 +9,12 @@ package com.redrabbit.constants;
 public class GameNumbers {
 
     // Smart Map constants. Values represent number of smart Tiles.
-    public final static int SMART_MAP_WIDTH = 32;
-    public final static int SMART_MAP_HEIGHT = 26;
+    public final static int SMART_MAP_WIDTH = 16;
+    public final static int SMART_MAP_HEIGHT = 13;
 
     // Smart Tile constants. Values represent width/height in pixels.
-    public final static int SMART_TILE_WIDTH = 32;
-    public final static int SMART_TILE_HEIGHT = 32;
+    public final static int SMART_TILE_WIDTH = 64;
+    public final static int SMART_TILE_HEIGHT = 64;
 
     // World constants
     public final static int WORLD_WIDTH = 3;

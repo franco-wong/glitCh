@@ -10,9 +10,11 @@ import com.redrabbit.helpers.ImageHelper;
  * @author rabbitfighter
  *
  */
-public class GroundTile extends SmartTile {
+public class SpaceStationTile extends SmartTile {
 
-    protected final String imageName = "ground.png";
+
+    protected final String additionalPath = "spacestation/";
+    protected final String imageName = "tile1.png";
 
     /**
      * Constructor for ground tile.
@@ -20,9 +22,9 @@ public class GroundTile extends SmartTile {
      * @param vector
      *            - The vector passed in.
      */
-    public GroundTile(Vector2f vector) {
+    public SpaceStationTile(Vector2f vector) {
 	super(vector);
-	this.setImage(ImageHelper.setImage(imageName));
+	this.setImage(ImageHelper.setTileImage(additionalPath+imageName));
     }
 
-}//EOF
+}// EOF

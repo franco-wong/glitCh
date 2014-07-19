@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import com.redrabbit.constants.GameColors;
 import com.redrabbit.constants.GameStrings;
 import com.redrabbit.helpers.FontHelper;
+import com.redrabbit.helpers.ImageHelper;
 import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Menu;
@@ -31,7 +32,8 @@ public class MainMenuState extends BasicGameState {
     private final String TAG = "BasicGameState";
 
        // ==> WIP ... Path to image. Need to clean this up <==
-    private final String imagePath = "res/img/layer.png";
+    //private final String imagePath = "res/img/backgrounds/"; //Dont think I need this.
+    private final String imageName = "layer.png";
 
     // x, y coordinates
     protected float mouseX, mouseY;
@@ -66,7 +68,7 @@ public class MainMenuState extends BasicGameState {
 
 	// Create the menu object with (title, the menu items array, and the
 	// image).
-	mainMenu = new Menu(GameStrings.TITLE, menuItems, new Image(imagePath));
+	mainMenu = new Menu(GameStrings.TITLE, menuItems, ImageHelper.setBackgroundImage(imageName));
 
 	// Initialize fonts.
 	checkbook = FontHelper.setTTF("checkbook.ttf", 18);

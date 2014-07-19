@@ -17,7 +17,7 @@ public class SmartMap extends Moveable {
 
     // New smart Map.
     private SmartTile[][] map;
-    private GroundTile[][] tiledMap;
+    private SpaceStationTile[][] tiledMap;
     private Rectangle bounds;
     private int width, height;
     
@@ -56,12 +56,12 @@ public class SmartMap extends Moveable {
 	}
 	
 	// New tiled map.
-	this.setTiledMap(new GroundTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
+	this.setTiledMap(new SpaceStationTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
 	// Draw the tiles.
 	for (int i = 0; i < this.getWidth(); i++) {
 	    for (int j = 0; j < this.getHeight(); j++) {
 		// Set a new Smart Tile.
-		this.getTiledMap()[i][j] = new GroundTile(new Vector2f(i
+		this.getTiledMap()[i][j] = new SpaceStationTile(new Vector2f(i
 			* GameNumbers.SMART_TILE_WIDTH, j
 			* GameNumbers.SMART_TILE_HEIGHT));
 	    }
@@ -121,11 +121,11 @@ public class SmartMap extends Moveable {
 	this.tiled = tiled;
     }
 
-    public GroundTile[][] getTiledMap() {
+    public SpaceStationTile[][] getTiledMap() {
 	return tiledMap;
     }
 
-    public void setTiledMap(GroundTile[][] tiledMap) {
+    public void setTiledMap(SpaceStationTile[][] tiledMap) {
 	this.tiledMap = tiledMap;
     }
 

@@ -45,7 +45,7 @@ public class FontHelper {
 	try {
 	    // Open an input stream to get resources
 	    InputStream inputStream = ResourceLoader
-		    .getResourceAsStream((path + font).toString());
+		    .getResourceAsStream((path + font));
 
 	    // Create an awt Font object from the input stream as a TrueTypeFont
 	    awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
