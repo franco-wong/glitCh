@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/rabbitfighter/Java/lwjgl-2.9.1/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Glitch/res/lib/natives/linux"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="res/lib/jars/lwjgl.jar"/>
 	<classpathentry kind="lib" path="res/lib/jars/slick-examples.jar"/>
 	<classpathentry kind="lib" path="res/lib/jars/slick.jar"/>
+	<classpathentry kind="lib" path="res/lib/jars/ibxm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

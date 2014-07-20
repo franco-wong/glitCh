@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.constants.GameColors;
 import com.redrabbit.constants.GameStrings;
+import com.redrabbit.engine.audio.EAudio;
 import com.redrabbit.helpers.FontHelper;
 import com.redrabbit.helpers.ImageHelper;
 import com.redrabbit.helpers.StateTransitions;
@@ -33,7 +34,7 @@ public class MainMenuState extends BasicGameState {
 
        // ==> WIP ... Path to image. Need to clean this up <==
     //private final String imagePath = "res/img/backgrounds/"; //Dont think I need this.
-    private final String imageName = "layer.png";
+    private final String imageName = "mainMenu.jpg";
 
     // x, y coordinates
     protected float mouseX, mouseY;
@@ -41,7 +42,7 @@ public class MainMenuState extends BasicGameState {
     // Menu Items array.
     MenuItem[] menuItems;
 
-    // Menu variabel
+    // Menu variable
     private Menu mainMenu;
 
     // Fonts int use.
@@ -74,7 +75,11 @@ public class MainMenuState extends BasicGameState {
 	checkbook = FontHelper.setTTF("checkbook.ttf", 18);
 	plasmati = FontHelper.setTTF("plasmati.ttf", 48);
 	cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
-
+	
+	// Initialize audio
+	EAudio bgMusic = new EAudio("res/sound/music/spacedeb.mod");
+	bgMusic.getMusic().loop();
+	
     }
 
     /*
