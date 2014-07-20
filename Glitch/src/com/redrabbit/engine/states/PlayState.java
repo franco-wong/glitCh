@@ -1,24 +1,19 @@
-package com.redrabbit.states;
+package com.redrabbit.engine.states;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Line;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.Log;
-
 import com.redrabbit.constants.GameColors;
 import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Arena;
 import com.redrabbit.objects.Rect;
 import com.redrabbit.objects.AreaMap;
-import com.redrabbit.objects.SmartTile;
 import com.redrabbit.objects.SpaceStationArea;
 
 /**
@@ -29,7 +24,7 @@ import com.redrabbit.objects.SpaceStationArea;
  */
 public class PlayState extends BasicGameState {
 
-    private static final String TAG = "PlayState";
+    protected static final String TAG = "PlayState";
 
     protected static final int T = 1;
 
@@ -87,6 +82,7 @@ public class PlayState extends BasicGameState {
      * org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer,
      * org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
      */
+    @SuppressWarnings("unused")
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	    throws SlickException {
@@ -124,13 +120,14 @@ public class PlayState extends BasicGameState {
 	g.setColor(Color.yellow);
 
 	// Logging.
-	if (LoggerConfig.ON) {
+	if (LoggerConfig.ON && LoggerConfig.TRACKING_MOUSE) {
 	    g.resetFont();
 	    g.drawString("X: " + mouseX, 10, 30);
 	    g.drawString("Y: " + mouseY, 10, 50);
-	    Log.debug(TAG + "Player X: " + rect.getVector().getX()
-		    + " Player Y: " + rect.getVector().getY());
+	    
 	}
+	
+	
 
     }
 
@@ -147,10 +144,7 @@ public class PlayState extends BasicGameState {
 
 	rect.setVector(new Vector2f(rect.updateVector()));
 
-	if (LoggerConfig.ON) {
-	    Log.debug(" " + TAG + "Mouse X: " + rect.getVector().getX()
-		    + "Mouse Y: " + rect.getVector().getY());
-	}
+	
 
 	/***** Input *****/
 
@@ -245,6 +239,8 @@ public class PlayState extends BasicGameState {
 	}
 
 	/***** End Input *****/
+	
+	
 
 	if (rect.getVector().getX() <= 0
 		|| rect.getVector().getX() + rect.getWidth() >= arena

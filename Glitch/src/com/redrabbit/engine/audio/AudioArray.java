@@ -15,44 +15,40 @@ import com.redrabbit.helpers.AudioHelper;
 import com.redrabbit.logging.LoggerConfig;
 
 public class AudioArray {
-	private ArrayList<EAudio> audioCollectionArray;
+    private ArrayList<EAudio> audioCollectionArray;
 
-	public AudioArray() {
-		audioCollectionArray = new ArrayList<EAudio>();
+    public AudioArray() {
+	audioCollectionArray = new ArrayList<EAudio>();
+    }
+
+    public void addSound(String fileType, String audioPath, String audioName,
+	    boolean isStream) throws badMethodArgException,
+	    badAudioFormatException {
+
+	Audio audioBuffer = null;
+	// this is just a wrapper for OpenAL audio objects.
+	EAudio newAudio = null;
+
+	try {
+	    audioBuffer = AudioHelper.createOpenALAudio(fileType, audioPath,
+		    isStream);
+	} catch (Exception e) {
+	    System.out.println(e.getMessage());
 	}
 
-	public void addSound(String fileType, 
-		                 String audioPath,
-		                 String audioName, 
-                         boolean isStream) throws badMethodArgException, badAudioFormatException {
-		
-		Audio audioBuffer = null;
-		// this is just a wrapper for OpenAL audio objects.
-		EAudio newAudio = null; 
-	
-		try {
-			audioBuffer = AudioHelper.createOpenALAudio(fileType, audioPath, isStream); 	
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		newAudio = new EAudio(audioBuffer, audioName);
-		audioCollectionArray.add(newAudio);
+	newAudio = new EAudio(audioBuffer, audioName);
+	audioCollectionArray.add(newAudio);
+    }
+
+    public EAudio findEAudioByName(String audioName) {
+	EAudio tempEAudio;
+	for (int i = 0; i < audioCollectionArray.size(); i++) {
+	    tempEAudio = audioCollectionArray.get(i);
+
+	    if (tempEAudio.getAudioID().equals(audioName)) {
+		return tempEAudio;
+	    }
 	}
-	
-	public EAudio findEAudioByName(String audioName)
-	{
-		EAudio tempEAudio;
-		for(int i = 0; i < audioCollectionArray.size(); i++)
-		{
-			tempEAudio =  audioCollectionArray.get(i);
-			
-			if(tempEAudio.getAudioID().equals(audioName))
-			{
-				return tempEAudio;
-			}
-		}
-		return null;
-	}
+	return null;
+    }
 }

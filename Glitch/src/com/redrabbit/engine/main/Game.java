@@ -1,4 +1,4 @@
-package com.redrabbit.engine;
+package com.redrabbit.engine.main;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -6,9 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.constants.GameStrings;
-import com.redrabbit.states.MainMenuState;
-import com.redrabbit.states.PauseState;
-import com.redrabbit.states.PlayState;
+import com.redrabbit.engine.states.MainMenuState;
+import com.redrabbit.engine.states.PauseState;
+import com.redrabbit.engine.states.PlayState;
 
 /**
  * @authors rabbitfighter, redragonx

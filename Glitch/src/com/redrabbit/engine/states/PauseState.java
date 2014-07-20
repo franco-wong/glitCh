@@ -1,4 +1,4 @@
-package com.redrabbit.states;
+package com.redrabbit.engine.states;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

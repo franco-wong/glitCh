@@ -59,6 +59,7 @@ public class Rect extends Moveable {
      * @param s
      *            - the velocity passed in.
      */
+    @SuppressWarnings("unused")
     public void changeVelocity(float s) {
 	this.setVelocity(this.getVelocity() + s
 		* GameNumbers.PLAYER_SPEED_CHANGE_AMOUNT);
@@ -68,7 +69,7 @@ public class Rect extends Moveable {
 	    this.setVelocity(-GameNumbers.PLAYER_MAX_SPEED);
 
 	// Logging
-	if (LoggerConfig.ON) {
+	if (LoggerConfig.ON && LoggerConfig.TRACKING_PLAYER_MOVEMENT) {
 	    Log.debug(" " + TAG + "Velocity: " + this.getVelocity());
 	}
 
@@ -80,6 +81,7 @@ public class Rect extends Moveable {
      * @param amount
      *            - The amount in degrees passed in.
      */
+    @SuppressWarnings("unused")
     public void turn(int amount) {
 
 	// make sure angles are positive.
@@ -94,7 +96,7 @@ public class Rect extends Moveable {
 		* GameNumbers.PLAYER_ANGLE_CHANGE_AMOUNT));
 
 	// Logging
-	if (LoggerConfig.ON) {
+	if (LoggerConfig.ON && LoggerConfig.TRACKING_PLAYER_MOVEMENT) {
 	    Log.debug(TAG + "Angle: " + this.getAngle());
 	}
 

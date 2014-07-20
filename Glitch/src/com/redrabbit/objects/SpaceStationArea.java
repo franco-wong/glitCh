@@ -1,12 +1,9 @@
 package com.redrabbit.objects;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import tiles.SpaceStationTile;
-
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.helpers.ImageHelper;
+import com.redrabbit.tiles.SpaceStationTile;
 
 public class SpaceStationArea extends AreaMap {
 

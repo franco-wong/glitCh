@@ -3,10 +3,9 @@ package com.redrabbit.objects;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
-import tiles.SpaceStationTile;
-
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.helpers.Moveable;
+import com.redrabbit.tiles.SpaceStationTile;
 
 /**
  * Creates a map with tiles that are automatically generated upon a smart map

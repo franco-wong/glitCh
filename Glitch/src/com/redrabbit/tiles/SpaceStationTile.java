@@ -1,4 +1,4 @@
-package tiles;
+package com.redrabbit.tiles;
 
 import org.newdawn.slick.geom.Vector2f;
 

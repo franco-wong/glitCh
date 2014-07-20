@@ -1,11 +1,8 @@
-package com.redrabbit.states;
-
-import javax.swing.text.StyleConstants.ColorConstants;
+package com.redrabbit.engine.states;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
@@ -32,8 +29,9 @@ public class MainMenuState extends BasicGameState {
     @SuppressWarnings("unused")
     private final String TAG = "BasicGameState";
 
-       // ==> WIP ... Path to image. Need to clean this up <==
-    //private final String imagePath = "res/img/backgrounds/"; //Dont think I need this.
+    // ==> WIP ... Path to image. Need to clean this up <==
+    // private final String imagePath = "res/img/backgrounds/"; //Dont think I
+    // need this.
     private final String imageName = "mainMenu.jpg";
 
     // x, y coordinates
@@ -48,8 +46,25 @@ public class MainMenuState extends BasicGameState {
     // Fonts int use.
     TrueTypeFont checkbook, cosmicfade, plasmati, twobit;
 
+    // Music
+    EAudio bgMusic;
+
+    // Path to music
+    private String sweetDream = "res/sound/music/sweetdre.xm";
+
+    // Boolean for paused
+    private boolean paused;
+
+    /**
+     * Constructor
+     * 
+     * @param state
+     */
     public MainMenuState(int state) {
 	// WIP -- Investigate...
+	// Initialize audio
+	bgMusic = new EAudio(sweetDream);
+	bgMusic.getMusic().loop();
     }
 
     @Override
@@ -60,26 +75,27 @@ public class MainMenuState extends BasicGameState {
 	menuItems = new MenuItem[5];
 
 	// Add menu items: (title, x, y, width, height, angle, speed, selected)
-	menuItems[0] = new MenuItem(GameStrings.PLAY, 472f, 160f, 110f, 100f, 0f, 0f, false);
-	menuItems[1] = new MenuItem(GameStrings.DIRECTIONS, 392f, 270f, 290f, 100f, 0f, 0f,
-		false);
-	menuItems[2] = new MenuItem(GameStrings.SCORES, 437, 380, 210, 100, 0f, 0f, false);
-	menuItems[3] = new MenuItem(GameStrings.CREDITS, 428, 490, 220, 100, 0f, 0f, false);
-	menuItems[4] = new MenuItem(GameStrings.QUIT, 472, 600, 110, 100, 0f, 0f, false);
+	menuItems[0] = new MenuItem(GameStrings.PLAY, 472f, 160f, 110f, 100f,
+		0f, 0f, false);
+	menuItems[1] = new MenuItem(GameStrings.DIRECTIONS, 392f, 270f, 290f,
+		100f, 0f, 0f, false);
+	menuItems[2] = new MenuItem(GameStrings.SCORES, 437, 380, 210, 100, 0f,
+		0f, false);
+	menuItems[3] = new MenuItem(GameStrings.CREDITS, 428, 490, 220, 100,
+		0f, 0f, false);
+	menuItems[4] = new MenuItem(GameStrings.QUIT, 472, 600, 110, 100, 0f,
+		0f, false);
 
 	// Create the menu object with (title, the menu items array, and the
 	// image).
-	mainMenu = new Menu(GameStrings.TITLE, menuItems, ImageHelper.setBackgroundImage(imageName));
+	mainMenu = new Menu(GameStrings.TITLE, menuItems,
+		ImageHelper.setBackgroundImage(imageName));
 
 	// Initialize fonts.
 	checkbook = FontHelper.setTTF("checkbook.ttf", 18);
 	plasmati = FontHelper.setTTF("plasmati.ttf", 48);
 	cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
-	
-	// Initialize audio
-	EAudio bgMusic = new EAudio("res/sound/music/sweetdre.xm");
-	bgMusic.getMusic().loop();
-	
+
     }
 
     /*
@@ -92,7 +108,7 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	    throws SlickException {
-
+	
 	// g.setBackground(Colors.darkGrey);
 	g.drawImage(mainMenu.getBgImage(), 0, 0);
 	// gc.setDefaultFont(checkbook);
@@ -138,6 +154,12 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	    throws SlickException {
+	
+	if (StateTransitions.isPaused()) {
+	    bgMusic.getMusic().pause();
+	} else if (StateTransitions.isResumed()) {
+	    bgMusic.getMusic().resume();
+	}
 
 	/***** Input *****/
 
@@ -179,31 +201,33 @@ public class MainMenuState extends BasicGameState {
 	 */
 	for (int i = 0; i < menuItems.length; i++) {
 	    if (menuItems[i].isHovering(mouseX, mouseY)) {
-		
+
 		// Set the menu's selected proerty to tru.
 		menuItems[i].setSelected(true);
-		
+
 		// If mouse clicks on an item, handle it.
 		if (input.isMousePressed(0)) {
 
 		    switch (i) {
 
 		    case 0:
+			bgMusic.getMusic().stop();
 			StateTransitions.openPlayOption(sbg);
+
 			break;
-			
-		    case 1: 
+
+		    case 1:
 			StateTransitions.openDirections(sbg);
 			break;
-			
+
 		    case 2:
 			StateTransitions.openScores(sbg);
 			break;
-			
-		    case 3: 
+
+		    case 3:
 			StateTransitions.openCredits(sbg);
 			break;
-			
+
 		    case 4:
 			StateTransitions.quitOption(gc, sbg);
 			break;
@@ -225,6 +249,14 @@ public class MainMenuState extends BasicGameState {
     @Override
     public int getID() {
 	return 0;
+    }
+
+    public boolean isPaused() {
+	return paused;
+    }
+
+    public void setPaused(boolean paused) {
+	this.paused = paused;
     }
 
 }
