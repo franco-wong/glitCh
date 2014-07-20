@@ -20,7 +20,7 @@ public class SmartTile extends Moveable {
     private Rectangle bounds;
     private Color color;
     private int width, height;
-    private Image image;
+    private Image groundImage;
     private boolean passable;
 
     /**
@@ -77,11 +77,11 @@ public class SmartTile extends Moveable {
     }
 
     public Image getImage() {
-	return image;
+	return groundImage;
     }
 
     public void setImage(Image image) {
-	this.image = image;
+	this.groundImage = image;
     }
 
     public boolean isPassable() {

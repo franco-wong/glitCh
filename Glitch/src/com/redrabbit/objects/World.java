@@ -7,7 +7,7 @@ import com.redrabbit.helpers.Moveable;
 
 public class World extends Moveable {
 
-    private SmartMap[][] maps;
+    private AreaMap[][] maps;
     private int pixelWidth, pixelHeight;
     private int mapWidth, mapHeight;
     private int[][] startMap;
@@ -24,11 +24,11 @@ public class World extends Moveable {
 		* GameNumbers.SMART_MAP_WIDTH * GameNumbers.SMART_TILE_WIDTH);
     }
 
-    public SmartMap[][] getMaps() {
+    public AreaMap[][] getMaps() {
 	return maps;
     }
 
-    public void setMaps(SmartMap[][] maps) {
+    public void setMaps(AreaMap[][] maps) {
 	this.maps = maps;
     }
 

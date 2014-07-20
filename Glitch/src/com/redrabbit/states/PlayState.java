@@ -17,8 +17,9 @@ import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Arena;
 import com.redrabbit.objects.Rect;
-import com.redrabbit.objects.SmartMap;
+import com.redrabbit.objects.AreaMap;
 import com.redrabbit.objects.SmartTile;
+import com.redrabbit.objects.SpaceStationArea;
 
 /**
  * Purely experimental at this point... WIP...
@@ -39,7 +40,7 @@ public class PlayState extends BasicGameState {
     Arena arena;
 
     // Our map, and a buffer to swap maps if needed
-    SmartMap map, bufferMap;
+    AreaMap map, bufferMap;
 
     // For mouse coords.
     protected float mouseX;
@@ -74,8 +75,8 @@ public class PlayState extends BasicGameState {
 	arena = new Arena(0, 0, gc.getWidth(), gc.getHeight());
 
 	// New Tiled map. Vector, angle, velocity
-	map = new SmartMap(new Vector2f(0, 0));
-	map.setTiled(false);
+	map = new SpaceStationArea(new Vector2f(0, 0));
+	map.setTiled(true);
 
     }
 
@@ -94,18 +95,20 @@ public class PlayState extends BasicGameState {
 	for (int i = 0; i < map.getWidth(); i++) {
 	    for (int j = 0; j < map.getHeight(); j++) {
 		// Get the tile's random color.
-		g.setColor(map.getMap()[i][j].getColor());
-		if (map.isFilled() && !map.isTiled()) {
-		    g.fillRect(map.getMap()[i][j].getVector().getX(),
-			    map.getMap()[i][j].getVector().getY(),
-			    map.getMap()[i][j].getWidth(),
-			    map.getMap()[i][j].getHeight());
-		} else if (!map.isFilled() && !map.isTiled()) {
-		    g.drawRect(map.getMap()[i][j].getVector().getX(),
-			    map.getMap()[i][j].getVector().getY(),
-			    map.getMap()[i][j].getWidth(),
-			    map.getMap()[i][j].getHeight());
-		} else if (map.isTiled()) {
+		/*
+		 * g.setColor(map.getMap()[i][j].getColor()); if (map.isFilled()
+		 * && !map.isTiled()) {
+		 * g.fillRect(map.getMap()[i][j].getVector().getX(),
+		 * map.getMap()[i][j].getVector().getY(),
+		 * map.getMap()[i][j].getWidth(),
+		 * map.getMap()[i][j].getHeight()); } else if (!map.isFilled()
+		 * && !map.isTiled()) {
+		 * g.drawRect(map.getMap()[i][j].getVector().getX(),
+		 * map.getMap()[i][j].getVector().getY(),
+		 * map.getMap()[i][j].getWidth(),
+		 * map.getMap()[i][j].getHeight()); } else
+		 */
+		if (map.isTiled()) {
 		    g.drawImage(map.getTiledMap()[i][j].getImage(),
 			    map.getTiledMap()[i][j].getVector().getX(),
 			    map.getTiledMap()[i][j].getVector().getY());

@@ -77,7 +77,7 @@ public class MainMenuState extends BasicGameState {
 	cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
 	
 	// Initialize audio
-	EAudio bgMusic = new EAudio("res/sound/music/spacedeb.mod");
+	EAudio bgMusic = new EAudio("res/sound/music/sweetdre.xm");
 	bgMusic.getMusic().loop();
 	
     }

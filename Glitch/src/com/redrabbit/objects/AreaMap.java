@@ -3,6 +3,8 @@ package com.redrabbit.objects;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
+import tiles.SpaceStationTile;
+
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.helpers.Moveable;
 
@@ -13,11 +15,11 @@ import com.redrabbit.helpers.Moveable;
  * @author rabbitfighter, redragonX
  *
  */
-public class SmartMap extends Moveable {
+public class AreaMap extends Moveable {
 
     // New smart Map.
     private SmartTile[][] map;
-    private SpaceStationTile[][] tiledMap;
+    private SmartTile[][] tiledMap;
     private Rectangle bounds;
     private int width, height;
     
@@ -32,7 +34,7 @@ public class SmartMap extends Moveable {
      * @param angle
      * @param velocity
      */
-    public SmartMap(Vector2f vector) {
+    public AreaMap(Vector2f vector) {
 	// Vector for x and y, but usually, angle and velocity should be zero,
 	// unless the map is moving.
 	super(vector, 0f, 0f);
@@ -43,32 +45,7 @@ public class SmartMap extends Moveable {
 		this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
 			.getY(), this.getWidth(), this.getHeight()));
 		
-	// New Smart Map made of Smart tiles. <==WIP (RANDOM COLOR)
-	this.setMap(new SmartTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
-	// Draw the tiles.
-	for (int i = 0; i < this.getWidth(); i++) {
-	    for (int j = 0; j < this.getHeight(); j++) {
-		// Set a new Smart Tile.
-		this.getMap()[i][j] = new SmartTile(new Vector2f(i
-			* GameNumbers.SMART_TILE_WIDTH, j
-			* GameNumbers.SMART_TILE_HEIGHT));
-	    }
-	}
 	
-	// New tiled map.
-	this.setTiledMap(new SpaceStationTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
-	// Draw the tiles.
-	for (int i = 0; i < this.getWidth(); i++) {
-	    for (int j = 0; j < this.getHeight(); j++) {
-		// Set a new Smart Tile.
-		this.getTiledMap()[i][j] = new SpaceStationTile(new Vector2f(i
-			* GameNumbers.SMART_TILE_WIDTH, j
-			* GameNumbers.SMART_TILE_HEIGHT));
-	    }
-	}
-	
-	// Set filled false upon build.
-	this.setFilled(false);
     }
 
     /***** Getters/Setters *****/
@@ -121,12 +98,13 @@ public class SmartMap extends Moveable {
 	this.tiled = tiled;
     }
 
-    public SpaceStationTile[][] getTiledMap() {
+    public SmartTile[][] getTiledMap() {
 	return tiledMap;
     }
 
-    public void setTiledMap(SpaceStationTile[][] tiledMap) {
-	this.tiledMap = tiledMap;
+   
+    public void setTiledMap(SmartTile[][] smartTiles) {
+	this.tiledMap = smartTiles;
     }
 
    
