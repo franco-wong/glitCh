@@ -2,6 +2,7 @@ package com.redrabbit.tiles;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.helpers.ImageHelper;
 import com.redrabbit.objects.SmartTile;
 
@@ -23,12 +24,10 @@ public class SpaceStationTile extends SmartTile {
     protected final String tileDirty2 = "tileDirty2.png";
     protected final String tileDirty3 = "tileDirty3.png";
     protected final String tileDirty4 = "tileDirty4.png";
-    protected final String tileMetal = "tileDirty4.png";
-
- 
+    protected final String tileMetal = "tileMetal.png";
 
     /**
-     * Constructor for ground tile.
+     * Constructor for ground tiles. Creates 
      * 
      * @param vector
      *            - The vector passed in.
@@ -37,35 +36,48 @@ public class SpaceStationTile extends SmartTile {
 
 	super(vector);
 
-	int random = (int) (Math.ceil(Math.random() * 11));
+	int random = (int) (Math.ceil(Math.random() * 36));
 
-	if (random <= 6) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tilePlain));
+	if (random <= 20) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tilePlain));
 	}
-	if (random == 7) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileCutaway));
+	if (random > 20 && random <= 26) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileCutaway));
 	}
-	if (random == 8) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDoor1));
+	if (random > 26 && random <= 30) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDoor1));
 	}
-	if (random == 9) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDoor2));
+	if (random == 31) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDoor2));
 	}
-	if (random == 10) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDirty1));
+	if (random == 32) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDirty1));
 	}
-	if (random == 11) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDirty2));
+	if (random == 33) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDirty2));
 	}
-	if (random == 12) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDirty3));
+	if (random == 34) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDirty3));
 	}
-	if (random == 13) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileDirty4));
+	if (random == 35) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileDirty4));
 	}
-	if (random == 14) {
-	    this.setImage(ImageHelper.setTileImage(tilesPathAddition+tileMetal));
+	if (random == 36) {
+	    this.setImage(ImageHelper.setTileImage(tilesPathAddition
+		    + tileMetal));
 	}
+	
+	
+	
+	
 
     }
 

@@ -3,6 +3,7 @@ package com.redrabbit.objects;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.tiles.ComputerTerminalTile;
 import com.redrabbit.tiles.SpaceStationTile;
 
 public class SpaceStationArea extends AreaMap {
@@ -12,7 +13,7 @@ public class SpaceStationArea extends AreaMap {
 	System.out.println("SmartTileWidth" + this.getWidth());
 	this.setTiledMap(new SmartTile[GameNumbers.SMART_MAP_WIDTH][GameNumbers.SMART_MAP_HEIGHT]);
 
-	// We want 2 of each "other tile" and the rest normal.
+	// Set a new randomely generated map
 	for (int i = 0; i < this.getWidth(); i++) {
 	    for (int j = 0; j < this.getHeight(); j++) {
 		// Set a new Smart Tile.
@@ -22,6 +23,18 @@ public class SpaceStationArea extends AreaMap {
 			* GameNumbers.SMART_TILE_HEIGHT));
 	    }
 	}
+
+	// put the computer terminal somewhere
+	int randomX = (int) Math.ceil(Math.random()
+		* GameNumbers.SMART_MAP_WIDTH-1);
+	int randomY = (int) Math.ceil(Math.random()
+		* GameNumbers.SMART_MAP_HEIGHT-1);
+
+	
+	// Put random computer terminal.
+	this.getTiledMap()[randomX][randomY] = new ComputerTerminalTile(
+		new Vector2f(randomX * GameNumbers.SMART_TILE_WIDTH, randomY
+			* GameNumbers.SMART_TILE_HEIGHT));
 
     }
 

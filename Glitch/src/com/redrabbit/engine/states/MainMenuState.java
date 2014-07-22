@@ -63,8 +63,7 @@ public class MainMenuState extends BasicGameState {
     public MainMenuState(int state) {
 	// WIP -- Investigate...
 	// Initialize audio
-	bgMusic = new EAudio(sweetDream);
-	bgMusic.getMusic().loop();
+
     }
 
     @Override
@@ -96,6 +95,10 @@ public class MainMenuState extends BasicGameState {
 	plasmati = FontHelper.setTTF("plasmati.ttf", 48);
 	cosmicfade = FontHelper.setTTF("cosmicfade.ttf", 100);
 
+	// Music
+	bgMusic = new EAudio(sweetDream);
+	bgMusic.getMusic().loop();
+
     }
 
     /*
@@ -108,7 +111,7 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	    throws SlickException {
-	
+
 	// g.setBackground(Colors.darkGrey);
 	g.drawImage(mainMenu.getBgImage(), 0, 0);
 	// gc.setDefaultFont(checkbook);
@@ -154,12 +157,6 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	    throws SlickException {
-	
-	if (StateTransitions.isPaused()) {
-	    bgMusic.getMusic().pause();
-	} else if (StateTransitions.isResumed()) {
-	    bgMusic.getMusic().resume();
-	}
 
 	/***** Input *****/
 
@@ -211,7 +208,7 @@ public class MainMenuState extends BasicGameState {
 		    switch (i) {
 
 		    case 0:
-			bgMusic.getMusic().stop();
+			// bgMusic.getMusic().stop();
 			StateTransitions.openPlayOption(sbg);
 
 			break;

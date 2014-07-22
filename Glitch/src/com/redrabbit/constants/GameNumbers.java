@@ -24,5 +24,9 @@ public class GameNumbers {
     public final static float PLAYER_SPEED_CHANGE_AMOUNT = .0768f;
     public final static float PLAYER_ANGLE_CHANGE_AMOUNT = 4f;
     public final static float PLAYER_MAX_SPEED = 4f;
+    
+    // Mouse constants
+    public final static int MOUSE_LEFT = 0;
+    public final static int MOUSE_RIGHT = 1;
 
 }

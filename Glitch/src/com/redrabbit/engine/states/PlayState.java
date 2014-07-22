@@ -1,17 +1,24 @@
 package com.redrabbit.engine.states;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
+
 import com.redrabbit.constants.GameColors;
+import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.helpers.ImageHelper;
 import com.redrabbit.helpers.StateTransitions;
 import com.redrabbit.logging.LoggerConfig;
 import com.redrabbit.objects.Arena;
+import com.redrabbit.objects.Crosshairs;
 import com.redrabbit.objects.Rect;
 import com.redrabbit.objects.AreaMap;
 import com.redrabbit.objects.SpaceStationArea;
@@ -41,6 +48,9 @@ public class PlayState extends BasicGameState {
     protected float mouseX;
     protected float mouseY;
 
+    // Crosshairs
+    Crosshairs crosshairs;
+
     /**
      * Constructor. Not sure what it would do in slick, when you have init(),
      * but... Need to investigate.
@@ -68,6 +78,9 @@ public class PlayState extends BasicGameState {
 
 	// New Arena. X, X, with, height.
 	arena = new Arena(0, 0, gc.getWidth(), gc.getHeight());
+
+	// Crosshairs
+	crosshairs = new Crosshairs(new Vector2f(mouseX, mouseY), 0, 0);
 
 	// New Tiled map. Vector, angle, velocity
 	map = new SpaceStationArea(new Vector2f(0, 0));
@@ -124,10 +137,23 @@ public class PlayState extends BasicGameState {
 	    g.resetFont();
 	    g.drawString("X: " + mouseX, 10, 30);
 	    g.drawString("Y: " + mouseY, 10, 50);
-	    
+
 	}
-	
-	
+
+	// If left mouse button is clicked or pressed.
+	if (crosshairs.islClicked() || crosshairs.islPressed()) {
+	    // Draw the crosshairs.
+	    crosshairs.setCrosshairsImage(ImageHelper
+		    .setCrosshairsImage(Crosshairs.c_dot_hit));
+	    g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
+		    .getX(), crosshairs.getVector().getY());
+	} else if (!crosshairs.islClicked() && !crosshairs.islPressed()) {
+	    // Draw the crosshairs.
+	    crosshairs.setCrosshairsImage(ImageHelper
+		    .setCrosshairsImage(Crosshairs.c_cross_hit));
+	    g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
+		    .getX(), crosshairs.getVector().getY());
+	}// END
 
     }
 
@@ -143,8 +169,6 @@ public class PlayState extends BasicGameState {
 	    throws SlickException {
 
 	rect.setVector(new Vector2f(rect.updateVector()));
-
-	
 
 	/***** Input *****/
 
@@ -180,6 +204,63 @@ public class PlayState extends BasicGameState {
 	    StateTransitions.openPauseMenu(sbg);
 	}
 
+	// Mouse Left Clicked
+	if (input.isMousePressed(GameNumbers.MOUSE_LEFT)) {
+	    crosshairs.setlClicked(true);
+	} else {
+	    crosshairs.setlClicked(false);
+	}
+
+	// Mouse Right Clicked
+	if (input.isMousePressed(GameNumbers.MOUSE_RIGHT)) {
+	    crosshairs.setrClicked(true);
+	} else {
+	    crosshairs.setrClicked(false);
+	}
+
+	// Mouse Left Pressed
+	if (input.isMouseButtonDown(GameNumbers.MOUSE_LEFT)) {
+	    crosshairs.setlPressed(true);
+	} else {
+	    crosshairs.setlPressed(false);
+	}
+
+	// Mouse Right Pressed
+	if (input.isMouseButtonDown(GameNumbers.MOUSE_RIGHT)) {
+	    crosshairs.setrPressed(true);
+	} else {
+	    crosshairs.setrPressed(false);
+	}
+
+	/***** End Input *****/
+
+	// For every sqaure, run collision detection against crosshairs
+	for (int i = 0; i < map.getWidth(); i++) {
+	    for (int j = 0; j < map.getHeight(); j++) {
+
+		// If the tile iterated intersects the mouse...
+		if (map.getTiledMap()[i][j].getBounds().intersects(
+			new Circle(input.getMouseX(), input.getMouseY(), 1))) {
+
+		    // Snap to grid.
+		    crosshairs.setVector(new Vector2f(map.getTiledMap()[i][j]
+			    .getBounds().getCenterX()
+			    - crosshairs.getWidth()
+			    / 2, map.getTiledMap()[i][j].getBounds()
+			    .getCenterY() - crosshairs.getHeight() / 2));
+
+		    // For debugging crosshairs.
+		    if (LoggerConfig.CROSSHAIR_DEBUG) {
+			Log.debug(TAG + " Crosshair X:"
+				+ crosshairs.getBounds().getCenterX()
+				+ " Crosshair Y: "
+				+ crosshairs.getBounds().getCenterY());
+		    }
+
+		}// end if
+	    }
+	}// END
+
 	/*
 	 * F to fill the colored tiles. F will swap between filled and not
 	 * filled.
@@ -213,11 +294,8 @@ public class PlayState extends BasicGameState {
 
 	    bufferMap = map;
 
-	    for (int i = 0; i < map.getWidth(); i++) {
-		for (int j = 0; j < map.getHeight(); j++) {
-		    map.getMap()[i][j].setColor(GameColors.getRandomHue());
-		}
-	    }
+	    // BUG <== TODO
+
 	}
 
 	// I for Tiled Images
@@ -239,8 +317,6 @@ public class PlayState extends BasicGameState {
 	}
 
 	/***** End Input *****/
-	
-	
 
 	if (rect.getVector().getX() <= 0
 		|| rect.getVector().getX() + rect.getWidth() >= arena

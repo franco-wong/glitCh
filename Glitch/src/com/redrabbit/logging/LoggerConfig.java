@@ -12,4 +12,6 @@ public class LoggerConfig {
     public static final boolean ON = true;
     public static final boolean TRACKING_PLAYER_MOVEMENT = false;
     public static final boolean TRACKING_MOUSE = false;
+    public static final boolean CROSSHAIR_IMAGE_DEBUG = false;
+    public static final boolean CROSSHAIR_DEBUG = false;
 }
