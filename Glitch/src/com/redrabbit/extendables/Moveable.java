@@ -1,5 +1,7 @@
-package com.redrabbit.helpers;
+package com.redrabbit.extendables;
 
+import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -9,10 +11,16 @@ import org.newdawn.slick.geom.Vector2f;
  *
  */
 public class Moveable {
+    
+    public final static String TAG= "Moveable";
 
     private Vector2f vector;
     private float angle;
     private float velocity;
+    private float width;
+    private float height;
+    private Rectangle bounds;
+    private Circle boundsC;
 
     /**
      * Contrcutor for a moveable item.
@@ -72,5 +80,39 @@ public class Moveable {
     public void setVelocity(float velocity) {
 	this.velocity = velocity;
     }
+
+    public Rectangle getBounds() {
+	return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+	this.bounds = bounds;
+    }
+
+    public Circle getBoundsC() {
+	return boundsC;
+    }
+
+    public void setBoundsC(Circle boundsC) {
+	this.boundsC = boundsC;
+    }
+
+    public float getWidth() {
+	return width;
+    }
+
+    public void setWidth(float width) {
+	this.width = width;
+    }
+
+    public float getHeight() {
+	return height;
+    }
+
+    public void setHeight(float height) {
+	this.height = height;
+    }
+
+   
 
 }// EOF

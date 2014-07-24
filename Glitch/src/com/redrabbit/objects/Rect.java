@@ -5,7 +5,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.helpers.Moveable;
+import com.redrabbit.extendables.Moveable;
 import com.redrabbit.logging.LoggerConfig;
 
 /**
@@ -21,7 +21,6 @@ public class Rect extends Moveable {
     private float width;
     private float height;
     private float speed;
-    private Rectangle bounds;
 
     /**
      * Constructor for a "Rectangle" of sorts for testing purposes.
@@ -101,40 +100,7 @@ public class Rect extends Moveable {
 	}
 
     }
-
-    /***** Getters/Setters *****/
-
-    public float getHeight() {
-	return height;
-    }
-
-    public void setHeight(float height) {
-	this.height = height;
-    }
-
-    public float getWidth() {
-	return width;
-    }
-
-    public void setWidth(float width) {
-	this.width = width;
-    }
-
-    public Rectangle getBounds() {
-	return bounds;
-    }
-
-    public void setBounds(Rectangle bounds) {
-	this.bounds = bounds;
-    }
-
-    public float getSpeed() {
-	return speed;
-    }
-
-    public void setSpeed(float speed) {
-	this.speed = speed;
-    }
+    
 
     public void bounceY() {
 	this.setAngle(this.getAngle() * -1);

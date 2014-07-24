@@ -28,5 +28,11 @@ public class GameNumbers {
     // Mouse constants
     public final static int MOUSE_LEFT = 0;
     public final static int MOUSE_RIGHT = 1;
+    
+    // Number of computers per area
+    public static final int NUMBER_COMPUTERS_PER_AREA = 3;
+    
+    //Number of disks per area
+    public static final int NUMBER_DISCETTES_PER_AREA = 1;
 
 }

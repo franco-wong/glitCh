@@ -6,7 +6,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
-import com.redrabbit.helpers.Moveable;
+import com.redrabbit.extendables.Moveable;
 
 /**
  * A class that hold information about menu items.

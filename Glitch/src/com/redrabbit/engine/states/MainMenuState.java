@@ -97,7 +97,7 @@ public class MainMenuState extends BasicGameState {
 
 	// Music
 	bgMusic = new EAudio(sweetDream);
-	bgMusic.getMusic().loop();
+	//bgMusic.getMusic().loop();
 
     }
 

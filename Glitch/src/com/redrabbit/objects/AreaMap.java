@@ -4,7 +4,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.helpers.Moveable;
+import com.redrabbit.extendables.Moveable;
 import com.redrabbit.tiles.SpaceStationTile;
 
 /**
@@ -49,7 +49,7 @@ public class AreaMap extends Moveable {
 
     /***** Getters/Setters *****/
 
-    public int getWidth() {
+    public float getWidth() {
 	return width;
     }
 
@@ -57,7 +57,7 @@ public class AreaMap extends Moveable {
 	this.width = width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
 	return height;
     }
 

@@ -9,7 +9,7 @@ import com.redrabbit.objects.SmartTile;
 /**
  * A ground tile. Extends Smart tile, adding an image.
  * 
- * @author rabbitfighter
+ * @author rabbitfighter, redragonX
  *
  */
 public class SpaceStationTile extends SmartTile {

@@ -3,7 +3,7 @@ package com.redrabbit.objects;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.helpers.Moveable;
+import com.redrabbit.extendables.Moveable;
 
 public class World extends Moveable {
 

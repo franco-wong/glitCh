@@ -1,13 +1,11 @@
 package com.redrabbit.objects;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
-import com.redrabbit.constants.GameColors;
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.helpers.Moveable;
+import com.redrabbit.extendables.Moveable;
 
 /**
  * A class to hold information about Smart Tiles.
@@ -18,7 +16,6 @@ import com.redrabbit.helpers.Moveable;
 public class SmartTile extends Moveable {
 
     private Rectangle bounds;
-    private Color color;
     private int width, height;
     private Image groundImage;
     private boolean passable;
@@ -35,11 +32,10 @@ public class SmartTile extends Moveable {
 	// Set width and height.
 	this.setWidth(GameNumbers.SMART_TILE_WIDTH);
 	this.setHeight(GameNumbers.SMART_TILE_HEIGHT);
-	// Set a random color <== WIP
-	this.setColor(GameColors.getRandomHue());
 	// Set bounds
 	this.setBounds(new Rectangle(this.getVector().getX(), this.getVector()
 		.getY(), this.getWidth(), this.getHeight()));
+	this.setPassable(true);
     }
 
     /***** Getters/Setters *****/
@@ -50,30 +46,6 @@ public class SmartTile extends Moveable {
 
     public void setBounds(Rectangle bounds) {
 	this.bounds = bounds;
-    }
-
-    public Color getColor() {
-	return color;
-    }
-
-    public void setColor(Color color) {
-	this.color = color;
-    }
-
-    public int getWidth() {
-	return width;
-    }
-
-    public void setWidth(int width) {
-	this.width = width;
-    }
-
-    public int getHeight() {
-	return height;
-    }
-
-    public void setHeight(int height) {
-	this.height = height;
     }
 
     public Image getImage() {
@@ -92,4 +64,4 @@ public class SmartTile extends Moveable {
 	this.passable = passable;
     }
 
-}//EOF
+}// EOF

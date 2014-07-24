@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- An emitter with comments so that you can actually work with this stuff. -->
+<!-- @Author: Joshua Mivhael Waggoner [rabbitfighter81@gmail.com] -->
+
+
+<!--  -->
+<emitter
+    name="Test Particle"
+    imageName="" >
+
+    <!-- The time in milliseconds between spawning -->
+
+    <spawnInterval
+        enabled="true"
+        max="600.0"
+        min="40.0" />
+
+    <!-- The spawn count for each spawn. -->
+
+    <spawnCount
+        enabled="true"
+        max="3000.0"
+        min="10.0" />
+
+    <!-- Initioal count of particles -->
+
+    <initialLife
+        enabled="true"
+        max="5000.0"
+        min="512.0" />
+
+    <!-- The size of the particles themselves. -->
+
+    <initialSize
+        enabled="true"
+        max="100.0"
+        min="32.0" />
+    <!-- Spawn them between these variables -->
+
+    <xOffeset
+        enabled="true"
+        max="400.0"
+        min="-64.0" />
+    <!--  -->
+
+    <yOffeset
+        enabled="true"
+        max="640.0"
+        min="-64.0" />
+    <!-- Positiojn offset for spawn. -->
+
+    <initialDistance
+        enabled="true"
+        max="64.0"
+        min="-64.0" />
+
+    <!--  -->
+
+    <speed
+        enabled="true"
+        max="10000"
+        min="600" />
+
+    <!-- It will go forever if false, otherwise, if true it will -->
+
+    <length
+        enabled="false"
+        max="6400.0"
+        min="20.0" />
+
+    <!-- S -->
+    <spread value="300.0" />
+
+    <!-- Turn the axis. Flips about the z axis -->
+
+    <angularOffset value="5.0" />
+
+    <!-- How much you want your particle to grow to, max, in pixels. -->
+
+    <growthFactor value="250.0" />
+
+    <!-- change this to add gravity to particles. Can be used to create reuptions, snowflakes, etc... -->
+
+    <gravityFactor value="-50.0" />
+
+    <!-- Start alpha -->
+
+    <startAlpha value="255.0" />
+
+    <!-- End alpha -->
+
+    <endAlpha value="0.0" />
+
+    <color>
+        <!-- purple (r+nothing) -->
+
+<step
+            b="0.0"
+            g="0.0"
+            offset="0.0"
+            r="1" />
+
+        <!-- yellow (r+g) -->
+
+<step
+            b="0.0"
+            g="1.0"
+            offset="0.5"
+            r="1.0" />
+
+        <!-- smoky white -->
+
+<step
+            b="0.7"
+            g="0.7"
+            offset="0.75"
+            r="0.7" />
+
+        <!-- balck -->
+
+<step
+            b="0.0"
+            g="0.0"
+            offset="1.0"
+            r="0.0" />
+    </color>
+
+</emitter>
