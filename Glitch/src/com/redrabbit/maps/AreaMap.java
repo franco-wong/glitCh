@@ -1,10 +1,11 @@
-package com.redrabbit.objects;
+package com.redrabbit.maps;
 
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.extendables.Moveable;
+import com.redrabbit.extendables.SmartTile;
 import com.redrabbit.tiles.SpaceStationTile;
 
 /**

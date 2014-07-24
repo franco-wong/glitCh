@@ -2,7 +2,7 @@ package com.redrabbit.tiles;
 
 import org.newdawn.slick.geom.Vector2f;
 
-import com.redrabbit.objects.SmartTile;
+import com.redrabbit.extendables.SmartTile;
 
 /**
  * A barrier tile that has two states, open or shut.

@@ -3,8 +3,8 @@ package com.redrabbit.tiles;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.extendables.SmartTile;
 import com.redrabbit.helpers.ImageHelper;
-import com.redrabbit.objects.SmartTile;
 
 /**
  * A ground tile. Extends Smart tile, adding an image.

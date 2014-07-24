@@ -1,8 +1,10 @@
-package com.redrabbit.objects;
+package com.redrabbit.levels;
 
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.extendables.SmartTile;
+import com.redrabbit.maps.AreaMap;
 import com.redrabbit.tiles.ComputerTerminalTile;
 import com.redrabbit.tiles.SpaceStationTile;
 

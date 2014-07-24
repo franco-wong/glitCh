@@ -17,18 +17,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
 import com.redrabbit.charachters.EvilMouse;
-import com.redrabbit.charachters.Player;
 import com.redrabbit.constants.GameNumbers;
+import com.redrabbit.engine.hud.Crosshairs;
 import com.redrabbit.helpers.ImageHelper;
 import com.redrabbit.helpers.ParticleHelper;
-import com.redrabbit.helpers.StateTransitions;
+import com.redrabbit.helpers.TransitionHelper;
+import com.redrabbit.levels.SpaceStationArea;
 import com.redrabbit.logging.LoggerConfig;
+import com.redrabbit.maps.AreaMap;
 import com.redrabbit.objects.Arena;
-import com.redrabbit.objects.Crosshairs;
 import com.redrabbit.objects.Rect;
-import com.redrabbit.objects.AreaMap;
 import com.redrabbit.objects.LameShape;
-import com.redrabbit.objects.SpaceStationArea;
 import com.redrabbit.particles.ParticleEmitterSystem;
 
 /**
@@ -43,6 +42,8 @@ public class PlayState extends BasicGameState {
 
     protected static final int T = 1;
 
+    // Our rectangle to play with
+    Rect rect;
 
     // Our "arena" WIP
     Arena arena;
@@ -67,9 +68,6 @@ public class PlayState extends BasicGameState {
 
     // New array list for evil mice.
     ArrayList<EvilMouse> evilMice;
-    
-    //Player
-    Player player;
 
     /**
      * Constructor. Not sure what it would do in slick, when you have init(),
@@ -95,8 +93,8 @@ public class PlayState extends BasicGameState {
 	shape = new LameShape(new Vector2f(mouseX, mouseY), 0, 0);
 
 	// X, Y, width, height, angle, speed
-	player = new Player(new Vector2f((float) gc.getWidth() / 2 - 25,
-		(float) gc.getHeight() / 2 - 25), 0, 0);
+	rect = new Rect(new Vector2f((float) gc.getWidth() / 2 - 25,
+		(float) gc.getHeight() / 2 - 25), 50, 50, -90, .1f);
 
 	// New Arena. X, X, with, height.
 	arena = new Arena(0, 0, gc.getWidth(), gc.getHeight());
@@ -108,11 +106,11 @@ public class PlayState extends BasicGameState {
 	// Create new particle system.
 	pes = new ParticleEmitterSystem(new Vector2f(300, 300),
 		ParticleHelper.PARTICLE_FIRE, ParticleHelper.TEST_XML, 210000);
-	// Set the blending mode.
-	pes.getParticleSystem().setBlendingMode(ParticleSystem.BLEND_COMBINE);
+	
+	// Set the blending mode. TODO figure out which blending mode to use.
+	pes.getParticleSystem().setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
 
 	// Add emitter. TODO - figure this out?!?
-
 	pes.getParticleSystem().setPosition(Display.getHeight() / 2,
 		Display.getWidth() / 2);
 
@@ -164,8 +162,8 @@ public class PlayState extends BasicGameState {
 
 	// Set color and draw out "guy". <-- TODO: WIP
 	g.setColor(Color.magenta);
-
-	
+	g.fillRect(rect.getVector().getX(), rect.getVector().getY(),
+		rect.getWidth(), rect.getHeight());
 	g.setColor(Color.yellow);
 
 	// Logging.
@@ -201,10 +199,10 @@ public class PlayState extends BasicGameState {
 	    g.drawAnimation(evilMice.get(i).getAnimation(), evilMice.get(i)
 		    .getVector().getX(), evilMice.get(i).getVector().getY());
 	}
-	
-	g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector().getX(), crosshairs.getVector().getY());
 
-	g.drawAnimation(player.getAnimation(), player.getVector().getX(), player.getVector().getY());
+	g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
+		.getX(), crosshairs.getVector().getY());
+
     }
 
     /*
@@ -219,8 +217,6 @@ public class PlayState extends BasicGameState {
 	    throws SlickException {
 
 	shape.getAnimation().start();
-	
-	
 
 	// Update particle system.
 	pes.getParticleSystem().update(delta);
@@ -235,7 +231,7 @@ public class PlayState extends BasicGameState {
 	}
 
 	// Update the rec vector.
-	player.setVector(new Vector2f(player.updateVector()));
+	rect.setVector(new Vector2f(rect.updateVector()));
 
 	/***** Input *****/
 
@@ -248,27 +244,27 @@ public class PlayState extends BasicGameState {
 
 	// up
 	if (input.isKeyDown(Input.KEY_W) || input.isKeyDown(Input.KEY_UP)) {
-	    player.changeVelocity(1f);
+	    rect.changeVelocity(1f);
 	}
 
 	// down
 	if (input.isKeyDown(Input.KEY_S) || input.isKeyDown(Input.KEY_DOWN)) {
-	    player.changeVelocity(-1f);
+	    rect.changeVelocity(-1f);
 	}
 
 	// left
 	if (input.isKeyDown(Input.KEY_LEFT) || input.isKeyDown(Input.KEY_A)) {
-	    player.turn(-1);
+	    rect.turn(-1);
 	}
 
 	// right
 	if (input.isKeyDown(Input.KEY_RIGHT) || input.isKeyDown(Input.KEY_D)) {
-	    player.turn(1);
+	    rect.turn(1);
 	}
 
 	// ESC
 	if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-	    StateTransitions.openPauseMenu(sbg);
+	    TransitionHelper.openPauseMenu(sbg);
 	}
 
 	// 0 T turn emitters off.
@@ -338,16 +334,16 @@ public class PlayState extends BasicGameState {
 
 	/***** End Input *****/
 
-	if (player.getVector().getX() <= 0
-		|| player.getVector().getX() + player.getWidth() >= arena
+	if (rect.getVector().getX() <= 0
+		|| rect.getVector().getX() + rect.getWidth() >= arena
 			.getWidth() - T) {
-	    player.bounceX();
+	    rect.bounceX();
 	}
 
-	if (player.getVector().getY() <= 0 + T
-		|| player.getVector().getY() + player.getHeight() >= arena
+	if (rect.getVector().getY() <= 0 + T
+		|| rect.getVector().getY() + rect.getHeight() >= arena
 			.getHeight() - T) {
-	    player.bounceY();
+	    rect.bounceY();
 	}
 
     }

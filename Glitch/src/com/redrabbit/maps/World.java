@@ -1,4 +1,4 @@
-package com.redrabbit.objects;
+package com.redrabbit.maps;
 
 import org.newdawn.slick.geom.Vector2f;
 

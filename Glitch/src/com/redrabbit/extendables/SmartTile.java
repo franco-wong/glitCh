@@ -1,11 +1,10 @@
-package com.redrabbit.objects;
+package com.redrabbit.extendables;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.extendables.Moveable;
 
 /**
  * A class to hold information about Smart Tiles.

@@ -10,7 +10,7 @@ import org.newdawn.slick.util.Log;
 import com.redrabbit.engine.states.PlayState;
 import com.redrabbit.logging.LoggerConfig;
 
-public class StateTransitions {
+public class TransitionHelper {
 
     private static final String TAG = "StateTransitions";
     private static boolean paused;
@@ -40,8 +40,8 @@ public class StateTransitions {
     }
 
     public static void resumePlayOption(StateBasedGame sbg) {
-	StateTransitions.setPaused(false);
-	StateTransitions.setResumed(true);
+	TransitionHelper.setPaused(false);
+	TransitionHelper.setResumed(true);
 	// Enter state with transitions.
 	sbg.enterState(1, new FadeOutTransition(Color.transparent, 1000),
 		new FadeInTransition(Color.transparent, 1000));
@@ -87,8 +87,8 @@ public class StateTransitions {
      *            - The State Based Game object passed in.
      */
     public static void openPauseMenu(StateBasedGame sbg) {
-	StateTransitions.setPaused(true);
-	StateTransitions.setResumed(false);
+	TransitionHelper.setPaused(true);
+	TransitionHelper.setResumed(false);
 	sbg.enterState(2, new FadeOutTransition(Color.transparent, 1000),
 		new FadeInTransition(Color.transparent, 1000));
     }
@@ -100,7 +100,7 @@ public class StateTransitions {
     }
 
     public static void setPaused(boolean paused) {
-	StateTransitions.paused = paused;
+	TransitionHelper.paused = paused;
     }
 
     public static boolean isResumed() {
@@ -109,7 +109,7 @@ public class StateTransitions {
     }
 
     public static void setResumed(boolean resumed) {
-	StateTransitions.resumed = resumed;
+	TransitionHelper.resumed = resumed;
     }
 
 }

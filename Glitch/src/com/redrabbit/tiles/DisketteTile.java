@@ -2,8 +2,8 @@ package com.redrabbit.tiles;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.redrabbit.extendables.SmartTile;
 import com.redrabbit.helpers.ImageHelper;
-import com.redrabbit.objects.SmartTile;
 
 public class DisketteTile extends SmartTile{
     

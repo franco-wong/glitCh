@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
 import com.redrabbit.helpers.FontHelper;
-import com.redrabbit.helpers.StateTransitions;
+import com.redrabbit.helpers.TransitionHelper;
 import com.redrabbit.logging.LoggerConfig;
 
 /**
@@ -64,7 +64,7 @@ public class PauseState extends BasicGameState {
 	if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 	    
 	    // go back to play 
-	    StateTransitions.openPlayOption(sbg);
+	    TransitionHelper.openPlayOption(sbg);
 	    
 	    // Logging
 	    if (LoggerConfig.ON) {

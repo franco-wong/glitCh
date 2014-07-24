@@ -14,10 +14,10 @@ import com.redrabbit.constants.GameStrings;
 import com.redrabbit.engine.audio.EAudio;
 import com.redrabbit.helpers.FontHelper;
 import com.redrabbit.helpers.ImageHelper;
-import com.redrabbit.helpers.StateTransitions;
+import com.redrabbit.helpers.TransitionHelper;
 import com.redrabbit.logging.LoggerConfig;
-import com.redrabbit.objects.Menu;
-import com.redrabbit.objects.MenuItem;
+import com.redrabbit.menus.Menu;
+import com.redrabbit.menus.MenuItem;
 
 /**
  * @author rabbitfighter & redragonX
@@ -209,24 +209,24 @@ public class MainMenuState extends BasicGameState {
 
 		    case 0:
 			// bgMusic.getMusic().stop();
-			StateTransitions.openPlayOption(sbg);
+			TransitionHelper.openPlayOption(sbg);
 
 			break;
 
 		    case 1:
-			StateTransitions.openDirections(sbg);
+			TransitionHelper.openDirections(sbg);
 			break;
 
 		    case 2:
-			StateTransitions.openScores(sbg);
+			TransitionHelper.openScores(sbg);
 			break;
 
 		    case 3:
-			StateTransitions.openCredits(sbg);
+			TransitionHelper.openCredits(sbg);
 			break;
 
 		    case 4:
-			StateTransitions.quitOption(gc, sbg);
+			TransitionHelper.quitOption(gc, sbg);
 			break;
 		    }
 

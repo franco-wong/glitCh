@@ -1,4 +1,4 @@
-package com.redrabbit.objects;
+package com.redrabbit.menus;
 
 import org.newdawn.slick.Image;
 

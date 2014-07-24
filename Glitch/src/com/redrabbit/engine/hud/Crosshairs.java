@@ -1,4 +1,4 @@
-package com.redrabbit.objects;
+package com.redrabbit.engine.hud;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
