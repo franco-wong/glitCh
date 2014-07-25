@@ -16,6 +16,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
+import com.redrabbit.charachters.ElectricSnakeList;
 import com.redrabbit.charachters.EvilMouse;
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.engine.hud.Crosshairs;
@@ -58,8 +59,6 @@ public class PlayState extends BasicGameState {
     // Crosshairs
     Crosshairs crosshairs;
 
-    int timer = 60;
-
     // Particle Emitter System.
     ParticleEmitterSystem pes;
 
@@ -68,6 +67,9 @@ public class PlayState extends BasicGameState {
 
     // New array list for evil mice.
     ArrayList<EvilMouse> evilMice;
+
+    /***** TODO Snake *****/
+    ElectricSnakeList snakeList;
 
     /**
      * Constructor. Not sure what it would do in slick, when you have init(),
@@ -120,6 +122,12 @@ public class PlayState extends BasicGameState {
 
 	// Crosshairs
 	crosshairs = new Crosshairs(new Vector2f(mouseX, mouseY), 0, 0);
+
+	/***** TODO Snake *****/
+	// Vector, angle, velocity, size
+	snakeList = new ElectricSnakeList(new Vector2f(0, 600), 90,
+		GameNumbers.INITIAL_SNAKE_VELOCITY,
+		GameNumbers.INITIAL_SNAKE_SIZE);
 
     }
 

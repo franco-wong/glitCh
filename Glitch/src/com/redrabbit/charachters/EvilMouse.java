@@ -17,7 +17,7 @@ import com.redrabbit.extendables.Characters;
  */
 public class EvilMouse extends Characters {
 
-    protected final String imagePath = "res/img/characters/evil_mouse.png";
+    protected final String imagePath = "res/img/charachters/evil_mouse.png";
 
     public EvilMouse(Vector2f vector, float angle, float velocity)
 	    throws SlickException {

@@ -13,6 +13,8 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public class Animated extends Moveable {
 
+    
+
     // Shapes animation
     private Animation animation;
 

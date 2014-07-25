@@ -10,6 +10,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import com.redrabbit.constants.GameColors;
+import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.constants.GameStrings;
 import com.redrabbit.engine.audio.EAudio;
 import com.redrabbit.helpers.FontHelper;
@@ -74,16 +75,18 @@ public class MainMenuState extends BasicGameState {
 	menuItems = new MenuItem[5];
 
 	// Add menu items: (title, x, y, width, height, angle, speed, selected)
-	menuItems[0] = new MenuItem(GameStrings.PLAY, 472f, 160f, 110f, 100f,
-		0f, 0f, false);
-	menuItems[1] = new MenuItem(GameStrings.DIRECTIONS, 392f, 270f, 290f,
-		100f, 0f, 0f, false);
-	menuItems[2] = new MenuItem(GameStrings.SCORES, 437, 380, 210, 100, 0f,
-		0f, false);
-	menuItems[3] = new MenuItem(GameStrings.CREDITS, 428, 490, 220, 100,
-		0f, 0f, false);
-	menuItems[4] = new MenuItem(GameStrings.QUIT, 472, 600, 110, 100, 0f,
-		0f, false);
+	menuItems[0] = new MenuItem(GameStrings.PLAY,
+		gc.getWidth() / 2 - GameNumbers.PLAY_MENU_ITEM_WIDTH / 2, 140f,
+		GameNumbers.PLAY_MENU_ITEM_WIDTH, 100f, 0f, 0f, false);
+	menuItems[1] = new MenuItem(GameStrings.DIRECTIONS,
+		gc.getWidth() / 2 - GameNumbers.DIRECTIONS_MENU_ITEM_WIDTH / 2, 240f,
+		GameNumbers.DIRECTIONS_MENU_ITEM_WIDTH, 100f, 0f, 0f, false);
+	menuItems[2] = new MenuItem(GameStrings.SCORES,
+		gc.getWidth() / 2 - GameNumbers.SCORES_MENU_ITEM_WIDTH / 2, 340, GameNumbers.SCORES_MENU_ITEM_WIDTH, 100, 0f, 0f, false);
+	menuItems[3] = new MenuItem(GameStrings.CREDITS,
+		gc.getWidth() / 2 - GameNumbers.CREDITS_MENU_ITEM_WIDTH / 2, 440, GameNumbers.CREDITS_MENU_ITEM_WIDTH, 100, 0f, 0f, false);
+	menuItems[4] = new MenuItem(GameStrings.QUIT,
+		gc.getWidth() / 2 - GameNumbers.QUIT_MENU_ITEM_WIDTH / 2, 540, GameNumbers.QUIT_MENU_ITEM_WIDTH, 100, 0f, 0f, false);
 
 	// Create the menu object with (title, the menu items array, and the
 	// image).
@@ -97,7 +100,7 @@ public class MainMenuState extends BasicGameState {
 
 	// Music
 	bgMusic = new EAudio(sweetDream);
-	//bgMusic.getMusic().loop();
+	bgMusic.getMusic().loop();
 
     }
 
@@ -119,7 +122,7 @@ public class MainMenuState extends BasicGameState {
 	// Title
 	g.setFont(cosmicfade);
 	g.setColor(GameColors.yellow);
-	g.drawString(GameStrings.TITLE, 442, 30);
+	g.drawString(GameStrings.TITLE, gc.getWidth() / 2 - 175 / 2, 30);
 
 	// Menu Items
 	g.setColor(Color.white);

@@ -1,7 +1,7 @@
 package com.redrabbit.constants;
 
 /**
- * A Class to hold game constants.
+ * A Class to hold game number constants.
  * 
  * @author rabbitfighter, redragonX
  *
@@ -38,5 +38,16 @@ public class GameNumbers {
 
     // Number of disks per area
     public static final int NUMBER_DISCETTES_PER_AREA = 1;
+
+    // Menu Items
+    public static final float SCORES_MENU_ITEM_WIDTH = 180f;
+    public static final float PLAY_MENU_ITEM_WIDTH = 110f;
+    public static final float DIRECTIONS_MENU_ITEM_WIDTH = 260f;
+    public static final float CREDITS_MENU_ITEM_WIDTH = 220f;
+    public static final float QUIT_MENU_ITEM_WIDTH = 110F;
+
+    // Snake
+    public static final int INITIAL_SNAKE_SIZE = 8;
+    public static final float INITIAL_SNAKE_VELOCITY = 0f;
 
 }

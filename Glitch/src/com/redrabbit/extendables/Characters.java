@@ -14,9 +14,7 @@ public class Characters extends Living{
      */
     public Characters(Vector2f vector, float angle, float velocity) {
 	super(vector, angle, velocity);
-	this.setHealth(super.MAX_HEALTH);
-	this.setStamina(super.MAX_STAMINA);
-	this.setLiving(true);
+	
     }
 
    

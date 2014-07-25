@@ -2,6 +2,7 @@ package com.redrabbit.engine.main;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -69,6 +70,7 @@ public class Game extends StateBasedGame {
 		    GameNumbers.DISPLAY_HEIGHT, false);
 	    appgc.setTargetFrameRate(60);
 	    appgc.setSoundOn(LoggerConfig.SOUND_ON);
+	    appgc.setIcon("res/img/tiles/spacestation/computerTerminal1.png");
 	    appgc.start();
 	} catch (SlickException e) {
 	    appgc.destroy();
