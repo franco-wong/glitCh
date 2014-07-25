@@ -46,7 +46,7 @@ public class AreaMap extends Moveable {
 			.getY(), this.getWidth(), this.getHeight()));
 		
 	
-    }
+    }//End
 
     /***** Getters/Setters *****/
 

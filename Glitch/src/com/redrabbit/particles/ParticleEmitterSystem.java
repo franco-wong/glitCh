@@ -78,6 +78,9 @@ public class ParticleEmitterSystem {
 	// Add the emitter to the paricle system.
 	this.getParticleSystem().addEmitter(this.getConfigurableEmitter());
 
+	// Set the blending mode. TODO figure out which blending mode to use.
+	this.getParticleSystem().setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
+
     }// End contructor
 
     /***** Getters/Setter *****/

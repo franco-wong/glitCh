@@ -9,6 +9,12 @@ import org.newdawn.slick.geom.Vector2f;
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.extendables.Characters;
 
+/**
+ * An evil mouse. Experimental.
+ * 
+ * @author rabbitfighter
+ *
+ */
 public class EvilMouse extends Characters {
 
     protected final String imagePath = "res/img/characters/evil_mouse.png";
@@ -16,10 +22,7 @@ public class EvilMouse extends Characters {
     public EvilMouse(Vector2f vector, float angle, float velocity)
 	    throws SlickException {
 	super(vector, angle, velocity);
-	
-	
-	    
-	    
+
 	// Set the image Array.
 	this.setImageArray(new Image[] { new Image(imagePath) });
 	// Set the duration
@@ -30,9 +33,10 @@ public class EvilMouse extends Characters {
 	this.setWidth(GameNumbers.SMART_TILE_WIDTH);
 	this.setHealth(GameNumbers.SMART_TILE_HEIGHT);
 	// Set bounds
-	this.setBounds(new Rectangle(vector.getX(), vector.getY(),
-		this.getWidth(), this.getHealth()));
+	this.setBounds(new Rectangle(vector.getX(), vector.getY(), this
+		.getWidth(), this.getHealth()));
 	this.getAnimation().start();
 	this.getAnimation().setLooping(false);
     }
+
 }

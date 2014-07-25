@@ -5,13 +5,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.constants.GameStrings;
 import com.redrabbit.engine.states.MainMenuState;
 import com.redrabbit.engine.states.PauseState;
 import com.redrabbit.engine.states.PlayState;
+import com.redrabbit.logging.LoggerConfig;
 
 /**
- * @authors rabbitfighter, redragonx
+ * The class that creates the screen, establishes the states, and initializes
+ * them. Contains main().
+ * 
+ * @authors rabbitfighter, redragonX
  * 
  */
 public class Game extends StateBasedGame {
@@ -60,8 +65,10 @@ public class Game extends StateBasedGame {
 
 	try {
 	    appgc = new AppGameContainer(new Game(GameStrings.GAME_NAME));
-	    appgc.setDisplayMode(1024, 832, false);
+	    appgc.setDisplayMode(GameNumbers.DISPLAY_WIDTH,
+		    GameNumbers.DISPLAY_HEIGHT, false);
 	    appgc.setTargetFrameRate(60);
+	    appgc.setSoundOn(LoggerConfig.SOUND_ON);
 	    appgc.start();
 	} catch (SlickException e) {
 	    appgc.destroy();

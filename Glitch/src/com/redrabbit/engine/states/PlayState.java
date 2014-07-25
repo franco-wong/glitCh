@@ -106,13 +106,6 @@ public class PlayState extends BasicGameState {
 	// Create new particle system.
 	pes = new ParticleEmitterSystem(new Vector2f(300, 300),
 		ParticleHelper.PARTICLE_FIRE, ParticleHelper.TEST_XML, 210000);
-	
-	// Set the blending mode. TODO figure out which blending mode to use.
-	pes.getParticleSystem().setBlendingMode(ParticleSystem.BLEND_ADDITIVE);
-
-	// Add emitter. TODO - figure this out?!?
-	pes.getParticleSystem().setPosition(Display.getHeight() / 2,
-		Display.getWidth() / 2);
 
 	evilMice = new ArrayList<EvilMouse>();
 	// Make thee evil mice.
@@ -150,11 +143,14 @@ public class PlayState extends BasicGameState {
 		    g.drawImage(map.getTiledMap()[i][j].getImage(),
 			    map.getTiledMap()[i][j].getVector().getX(),
 			    map.getTiledMap()[i][j].getVector().getY());
-		}
+		}// End if
+	    }// End for
+	}// End for
 
-	    }
-	}
-
+	/*
+	 * TODO -Experimental. If the R Mouse button is clicked, render endless
+	 * particles.
+	 */
 	if (crosshairs.isrPressed()) {
 	    // Render particle system.
 	    pes.getParticleSystem().render();
