@@ -1,11 +1,10 @@
 package com.redrabbit.charachters;
 
-import org.lwjgl.util.vector.Vector;
+//Slick imports
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-
+//Package imports. 
 import com.redrabbit.animations.SnakeAnimation;
-import com.redrabbit.extendables.Animated;
 
 /**
  * An electrical snake list (a glorified linked list).
@@ -156,23 +155,30 @@ public class ElectricSnakeList {
     }
 
     /**
-     * A node in the snake.
+     * A node in the "snake list".
      * 
      * @author rabbitfighter
      *
      */
     private class Node {
+	
 	// reference to the next node in the chain,
 	// or null if there isn't one.
 	Node next;
-	// snakeCell carried by this node.
-	// could be of any type you need.
+	
+	// snakeCell node.
 	ElectricSnakeCell snakeCell;
 
-	// Node constructor
-	public Node(ElectricSnakeCell _snakeCell) {
-	    next = null;
-	    snakeCell = _snakeCell;
+	// Node constructor if we want to
+	// specify the node to point to.
+	public Node(ElectricSnakeCell snakeCell, Node next) {
+	    this.next = next;
+	    this.snakeCell = snakeCell;
+	}
+
+	// Node constructor if pointer is null.
+	public Node(ElectricSnakeCell snakeCell) {
+	    this(snakeCell, null);
 	}
 
 	/**
@@ -200,14 +206,6 @@ public class ElectricSnakeList {
 	    return output;
 	}
 
-	// another Node constructor if we want to
-	// specify the node to point to.
-	@SuppressWarnings("unused")
-	public Node(ElectricSnakeCell _snakeCell, Node _next) {
-	    next = _next;
-	    snakeCell = _snakeCell;
-	}
-
 	/***** Getters/Setters *****/
 
 	public ElectricSnakeCell getSnakeCell() {
@@ -215,16 +213,16 @@ public class ElectricSnakeList {
 	}
 
 	@SuppressWarnings("unused")
-	public void setSnakeCell(ElectricSnakeCell _snakeCell) {
-	    snakeCell = _snakeCell;
+	public void setSnakeCell(ElectricSnakeCell snakeCell) {
+	    this.snakeCell = snakeCell;
 	}
 
 	public Node getNext() {
 	    return next;
 	}
 
-	public void setNext(Node _next) {
-	    next = _next;
+	public void setNext(Node next) {
+	    this.next = next;
 	}
     }// End Node
 

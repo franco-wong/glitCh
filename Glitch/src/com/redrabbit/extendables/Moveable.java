@@ -11,8 +11,9 @@ import org.newdawn.slick.geom.Vector2f;
  *
  */
 public class Moveable {
-    
-    public final static String TAG= "Moveable";
+
+    // Class name for logging.
+    public final static String TAG = "Moveable";
 
     private Vector2f vector;
     private float angle;
@@ -23,7 +24,7 @@ public class Moveable {
     private Circle boundsC;
 
     /**
-     * Contrcutor for a moveable item.
+     * Contrcutor for a moveable item with angle and velocity.
      * 
      * @param vector
      *            The vector passed in.
@@ -36,6 +37,17 @@ public class Moveable {
 	this.setVector(vector);
 	this.setAngle(angle);
 	this.setVelocity(velocity);
+    }
+
+    /**
+     * Shorthand constructor for when you only need to declare a Vector, and are
+     * not ready, or have no need for a velocity, or angle.
+     * 
+     * @param vector
+     *            - the vector passed in.
+     */
+    public Moveable(Vector2f vector) {
+	this(vector, 0, 0);
     }
 
     /**
@@ -112,7 +124,5 @@ public class Moveable {
     public void setHeight(float height) {
 	this.height = height;
     }
-
-   
 
 }// EOF
