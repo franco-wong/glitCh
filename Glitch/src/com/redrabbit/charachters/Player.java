@@ -8,10 +8,11 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.extendables.Characters;
+
+import com.redrabbit.extendables.Living;
 import com.redrabbit.logging.LoggerConfig;
 
-public class Player extends Characters{
+public class Player extends Living{
 
     protected final String imagePath = "res/img/characters/badguy1.png";
 

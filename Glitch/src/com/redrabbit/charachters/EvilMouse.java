@@ -7,7 +7,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.redrabbit.constants.GameNumbers;
-import com.redrabbit.extendables.Characters;
+
+import com.redrabbit.extendables.Living;
 
 /**
  * An evil mouse. Experimental.
@@ -15,7 +16,7 @@ import com.redrabbit.extendables.Characters;
  * @author rabbitfighter
  *
  */
-public class EvilMouse extends Characters {
+public class EvilMouse extends Living {
 
     protected final String imagePath = "res/img/charachters/evil_mouse.png";
 

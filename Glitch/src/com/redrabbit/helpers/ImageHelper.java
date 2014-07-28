@@ -2,6 +2,7 @@ package com.redrabbit.helpers;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.util.Log;
 
 import com.redrabbit.logging.LoggerConfig;
@@ -198,6 +199,41 @@ public class ImageHelper {
 
 	// Return the image.
 	return image;
+    }
+
+    @SuppressWarnings("unused")
+    public static Image setSnakeCellImage(String imagepath) {
+	// Initialize image to null before try/catch.
+	Image image = null;
+
+	try {
+	    // Get the image from path.
+	    image = new Image(imagepath);
+
+	    if (LoggerConfig.ON && LoggerConfig.CHARACHTER_IMAGE_DEBUG) {
+		Log.debug(TAG + "Successfully loaded snake image '"
+			+ imagepath + "'.");
+	    }
+
+	} catch (SlickException e) {
+
+	    // Print stack trace.
+	    e.printStackTrace();
+
+	    // If logging on, log the event.
+	    if (LoggerConfig.ON && LoggerConfig.CHARACHTER_IMAGE_DEBUG) {
+		Log.debug(TAG + "Couldn't load snake image '" + imagepath
+			+ "'.");
+	    }
+
+	    // Return null if no image loaded.
+	    return null;
+
+	}
+
+	// Return the image.
+	return image;
+
     }
 
 }// EOF

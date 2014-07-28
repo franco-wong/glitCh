@@ -22,5 +22,6 @@ public class LoggerConfig {
     public static final boolean TILE_DEBUG = false;
     public static final boolean BACKGROUND_DEBUG = false;
     public static final boolean CHARACHTER_IMAGE_DEBUG = false;
-    public static final boolean SOUND_ON = false;
+    public static final boolean SOUND_ON = true;
+    public static final boolean SNAKE_CELLS_DEBUG = true;
 }// EOF

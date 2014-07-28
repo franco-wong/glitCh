@@ -2,8 +2,6 @@ package com.redrabbit.engine.states;
 
 import java.util.ArrayList;
 
-import org.lwjgl.opengl.Display;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,12 +9,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
-import com.redrabbit.charachters.ElectricSnakeList;
+import com.redrabbit.charachters.ElectricSnake;
 import com.redrabbit.charachters.EvilMouse;
 import com.redrabbit.constants.GameNumbers;
 import com.redrabbit.engine.hud.Crosshairs;
@@ -69,7 +66,7 @@ public class PlayState extends BasicGameState {
     ArrayList<EvilMouse> evilMice;
 
     /***** TODO Snake *****/
-    ElectricSnakeList snakeList;
+    ElectricSnake snake;
 
     /**
      * Constructor. Not sure what it would do in slick, when you have init(),
@@ -124,10 +121,9 @@ public class PlayState extends BasicGameState {
 	crosshairs = new Crosshairs(new Vector2f(mouseX, mouseY), 0, 0);
 
 	/***** TODO Snake *****/
-	// Vector, angle, velocity, size
-	snakeList = new ElectricSnakeList(new Vector2f(0, 600), 90,
-		GameNumbers.INITIAL_SNAKE_VELOCITY,
-		GameNumbers.INITIAL_SNAKE_SIZE);
+	// Create a new snake list
+	snake = new ElectricSnake(new Vector2f(0, 0), 0, 0, 4);
+	snake.update();
 
     }
 
@@ -178,24 +174,7 @@ public class PlayState extends BasicGameState {
 
 	}
 
-	// If left mouse button is clicked or pressed.
-	if (crosshairs.islClicked() || crosshairs.islPressed()) {
-	    // Draw the crosshairs.
-	    crosshairs.setCrosshairsImage(ImageHelper
-		    .setCrosshairsImage(Crosshairs.c_dot_hit));
-	    g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
-		    .getX(), crosshairs.getVector().getY());
-	} else if (!crosshairs.islClicked() && !crosshairs.islPressed()) {
-	    // Draw the crosshairs.
-	    crosshairs.setCrosshairsImage(ImageHelper
-		    .setCrosshairsImage(Crosshairs.c_cross_hit));
-	    g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
-		    .getX(), crosshairs.getVector().getY());
-	}// END
-
-	// pes.getParticleSystem
-
-	// Draw the particle system.
+	// Draw the stupid shape. TODO::Delete.
 	g.drawAnimation(shape.getAnimation(), 500, 400);
 
 	// Draw the evil mice
@@ -204,8 +183,16 @@ public class PlayState extends BasicGameState {
 		    .getVector().getX(), evilMice.get(i).getVector().getY());
 	}
 
+	// Draw the crosshairs last.
 	g.drawImage(crosshairs.getCrosshairsImage(), crosshairs.getVector()
 		.getX(), crosshairs.getVector().getY());
+
+	// Draw the snake cells TODO snake.draw();.
+	for (int i = 0; i < snake.getSnakeCellsList().size(); i++) {
+	    g.drawAnimation(snake.getSnakeCellsList().get(i).getAnimation(),
+		    snake.getSnakeCellsList().get(i).getVector().getX(), snake
+			    .getSnakeCellsList().get(i).getVector().getY());
+	}
 
     }
 
@@ -221,6 +208,8 @@ public class PlayState extends BasicGameState {
 	    throws SlickException {
 
 	shape.getAnimation().start();
+	
+	snake.update();
 
 	// Update particle system.
 	pes.getParticleSystem().update(delta);
@@ -334,6 +323,21 @@ public class PlayState extends BasicGameState {
 
 		}// end if
 	    }
+	}// END
+
+	/***** Mouse Buttons *****/
+
+	// If left mouse button is clicked or pressed.
+	if (crosshairs.islClicked() || crosshairs.islPressed()) {
+	    // Draw the crosshairs.
+	    crosshairs.setCrosshairsImage(ImageHelper
+		    .setCrosshairsImage(Crosshairs.c_dot_hit));
+
+	} else if (!crosshairs.islClicked() && !crosshairs.islPressed()) {
+	    // Draw the crosshairs.
+	    crosshairs.setCrosshairsImage(ImageHelper
+		    .setCrosshairsImage(Crosshairs.c_cross_hit));
+
 	}// END
 
 	/***** End Input *****/
